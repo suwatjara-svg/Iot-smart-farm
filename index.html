@@ -5,9 +5,9 @@
   <title>หลักสูตร Smart Farmer</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
       margin: 0;
-      background: #f4f7fa;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f3f6fb;
       color: #1f2937;
     }
     header {
@@ -25,53 +25,53 @@
       font-size: 16px;
     }
     .container {
-      max-width: 1000px;
+      max-width: 1100px;
       margin: 32px auto;
       padding: 0 16px;
     }
-    .module {
-      background: white;
-      border-radius: 10px;
-      padding: 20px;
-      margin-bottom: 24px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
     }
-    .module h2 {
-      margin-top: 0;
-      font-size: 20px;
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+    .card h2 {
+      font-size: 18px;
+      margin-bottom: 8px;
       color: #111827;
     }
-    .module p {
+    .card p {
       font-size: 14px;
-      line-height: 1.6;
-      color: #374151;
-    }
-    .submodule {
-      margin-top: 12px;
-      padding-left: 16px;
-    }
-    .submodule h3 {
-      font-size: 16px;
-      margin-bottom: 6px;
-      color: #1d4ed8;
-    }
-    .submodule p {
-      font-size: 13px;
       color: #4b5563;
+      line-height: 1.6;
     }
-    .profile {
+    .footer {
+      background: linear-gradient(90deg, #2563eb, #16a34a);
+      color: white;
       text-align: center;
+      padding: 24px 16px;
       margin-top: 40px;
     }
-    .profile img {
-      width: 180px;
+    .footer img {
+      width: 160px;
       border-radius: 50%;
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      margin-bottom: 12px;
     }
-    .profile p {
-      margin-top: 12px;
+    .footer p {
+      margin: 0;
       font-size: 14px;
-      color: #374151;
     }
   </style>
 </head>
@@ -82,44 +82,33 @@
   </header>
 
   <div class="container">
-
-    <div class="module">
-      <h2>Module 1: Smart Farmer คืออะไร</h2>
-      <p>เรียนรู้แนวคิดเกษตรอัจฉริยะ ประเภทของ Smart Farming และข้อดีที่ทำให้พืชเจริญเติบโตดีกว่าเดิม</p>
-    </div>
-
-    <div class="module">
-      <h2>Module 2: ไฟฟ้าเบื้องต้นสำหรับ Smart Farm</h2>
-      <p>พื้นฐานไฟฟ้า ประเภทของไฟฟ้า ชนิดสายไฟ อุปกรณ์ไฟฟ้า และความปลอดภัยในการใช้งานในฟาร์ม</p>
-    </div>
-
-    <div class="module">
-      <h2>Module 3: ระบบสื่อสาร IoT สำหรับ Smart Farm</h2>
-      <p>เปรียบเทียบเทคโนโลยี WiFi, Zigbee, Z-Wave, BLE และ LoRa สำหรับการเชื่อมต่ออุปกรณ์ในฟาร์ม</p>
-    </div>
-
-    <div class="module">
-      <h2>Module 4: การใช้งาน Sonoff ในระบบรดน้ำอัตโนมัติ</h2>
-      <p>เรียนรู้การต่อ Sonoff แบบต่าง ๆ เพื่อควบคุมอุปกรณ์ไฟฟ้าในฟาร์ม</p>
-      <div class="submodule">
-        <h3>Module 4.1: แบบที่ 1 — ควบคุมโหลดโดยตรง</h3>
-        <p>การต่อ Sonoff เพื่อควบคุมหลอดไฟหรือปั๊มน้ำขนาดเล็กโดยตรง</p>
+    <div class="grid">
+      <div class="card" onclick="location.href='smart-farmer.html'">
+        <h2>Smart Farmer คืออะไร</h2>
+        <p>แนวคิดเกษตรอัจฉริยะ ประเภทของ Smart Farming และข้อดีที่ทำให้พืชเจริญเติบโตดีกว่าเดิม</p>
       </div>
-      <div class="submodule">
-        <h3>Module 4.2: แบบที่ 2 — เพิ่มสวิตช์ Auto / Off / Manual</h3>
-        <p>การเพิ่มสวิตช์เลือกโหมดการทำงานเพื่อควบคุมระบบรดน้ำอัตโนมัติ</p>
+      <div class="card" onclick="location.href='electric-basic.html'">
+        <h2>ไฟฟ้าเบื้องต้นสำหรับ Smart Farm</h2>
+        <p>พื้นฐานไฟฟ้า ประเภทของไฟฟ้า ชนิดสายไฟ อุปกรณ์ไฟฟ้า และความปลอดภัยในการใช้งานในฟาร์ม</p>
       </div>
-      <div class="submodule">
-        <h3>Module 4.3: แบบที่ 3 — ใช้ร่วมกับ Magnetic Contactor</h3>
-        <p>การใช้ Sonoff ควบคุมโหลดขนาดใหญ่ผ่าน Magnetic Contactor เพื่อความปลอดภัย</p>
+      <div class="card" onclick="location.href='iot-communication.html'">
+        <h2>ระบบสื่อสาร IoT สำหรับ Smart Farm</h2>
+        <p>เปรียบเทียบเทคโนโลยี WiFi, Zigbee, Z-Wave, BLE และ LoRa สำหรับการเชื่อมต่ออุปกรณ์ในฟาร์ม</p>
+      </div>
+      <div class="card" onclick="location.href='sonoff-system.html'">
+        <h2>การใช้งาน Sonoff ในระบบรดน้ำอัตโนมัติ</h2>
+        <p>การต่อ Sonoff แบบต่าง ๆ รวมถึงการควบคุมโหลดโดยตรง, เพิ่มสวิตช์ Auto / Off / Manual และใช้ร่วมกับ Magnetic Contactor</p>
+      </div>
+      <div class="card" onclick="location.href='sprinkler-design.html'">
+        <h2>ออกแบบระบบน้ำสปริงเกอร์</h2>
+        <p>หลักการออกแบบระบบน้ำสปริงเกอร์สำหรับฟาร์มอัจฉริยะ พร้อมการคำนวณและเลือกอุปกรณ์ให้เหมาะสม</p>
       </div>
     </div>
+  </div>
 
-    <div class="profile">
-      <img src="profile.jpg" alt="รูปวิทยากร">
-      <p>นายสุวัฒน์ เจริญพิบูลย์<br>นักวิชาการพัฒนาฝีมือแรงงานชำนาญการ</p>
-    </div>
-
+  <div class="footer">
+    <img src="profile.jpg" alt="รูปสุวัฒน์">
+    <p>นายสุวัฒน์ เจริญพิบูลย์<br>นักวิชาการพัฒนาฝีมือแรงงานชำนาญการ</p>
   </div>
 </body>
 </html>
