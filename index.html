@@ -2,9 +2,265 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8">
-  <title>DSD Page</title>
+  <title>Smart Farmer Training - Home</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background: #f3f6fb;
+      color: #1f2933;
+    }
+
+    header {
+      background: linear-gradient(120deg, #2563eb, #16a34a);
+      color: white;
+      padding: 24px 16px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    header p {
+      margin: 6px 0 0;
+      font-size: 16px;
+      opacity: 0.9;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 24px auto 40px;
+      padding: 0 16px;
+    }
+
+    .info-box {
+      background: white;
+      padding: 16px 20px;
+      border-radius: 10px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      margin-bottom: 24px;
+      border-left: 4px solid #2563eb;
+    }
+
+    .info-box h2 {
+      margin: 0 0 8px;
+      font-size: 20px;
+      color: #111827;
+    }
+
+    .info-box p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    h3 {
+      margin: 8px 0 16px;
+      font-size: 18px;
+      color: #111827;
+    }
+
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 16px;
+    }
+
+    .module-card {
+      background: white;
+      border-radius: 10px;
+      padding: 16px 16px 18px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-top: 3px solid #e5e7eb;
+    }
+
+    .module-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #111827;
+    }
+
+    .module-desc {
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 12px;
+      color: #4b5563;
+    }
+
+    .module-badge {
+      display: inline-block;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #e5f0ff;
+      color: #1d4ed8;
+      margin-bottom: 8px;
+    }
+
+    .module-link {
+      display: inline-block;
+      text-decoration: none;
+      text-align: center;
+      padding: 8px 0;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      color: white;
+      background: #2563eb;
+      transition: background 0.15s, transform 0.1s, box-shadow 0.1s;
+      box-shadow: 0 1px 3px rgba(37,99,235,0.4);
+    }
+
+    .module-link:hover {
+      background: #1d4ed8;
+      transform: translateY(-1px);
+      box-shadow: 0 3px 8px rgba(37,99,235,0.4);
+    }
+
+    .module-link:active {
+      transform: translateY(0);
+      box-shadow: 0 1px 3px rgba(37,99,235,0.4);
+    }
+
+    footer {
+      text-align: center;
+      font-size: 12px;
+      color: #6b7280;
+      padding: 16px 8px 24px;
+      border-top: 1px solid #e5e7eb;
+      margin-top: 32px;
+      background: #f9fafb;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 22px;
+      }
+      header p {
+        font-size: 13px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>DSD</h1>
+
+  <header>
+    <h1>หลักสูตรการติดตั้งเครื่องรดน้ำระบบอัตโนมัติ</h1>
+    <p>Smart Farmer · Smart Farming · เกษตรอัจฉริยะ</p>
+  </header>
+
+  <div class="container">
+
+    <div class="info-box">
+      <h2>สถาบันพัฒนาฝีมือแรงงาน 4 ราชบุรี</h2>
+      <p>
+        หลักสูตร: การติดตั้งเครื่องรดน้ำระบบอัตโนมัติ<br>
+        วิทยากร: นายสุวัฒน์ เจริญพิบูลย์ · นักวิชาการพัฒนาฝีมือแรงงานชำนาญการ
+      </p>
+    </div>
+
+    <h3>โมดูลการเรียนรู้</h3>
+
+    <div class="modules-grid">
+
+      <div class="module-card">
+        <div>
+          <div class="module-badge">Module 1</div>
+          <div class="module-title">Smart Farmer คืออะไร</div>
+          <div class="module-desc">
+            แนะนำแนวคิด Smart Farmer, Smart Farming, ตัวอย่างการประยุกต์ใช้ในฟาร์มจริง
+            และเหตุผลที่พืชเติบโตดีกว่าระบบเกษตรแบบเดิม
+          </div>
+        </div>
+        <a class="module-link" href="smart-farmer.html">เข้าสู่บทเรียน</a>
+      </div>
+
+      <div class="module-card">
+        <div>
+          <div class="module-badge">Module 2</div>
+          <div class="module-title">ไฟฟ้าเบื้องต้นสำหรับ Smart Farm</div>
+          <div class="module-desc">
+            เรียนรู้ประเภทของไฟฟ้า ชนิดของสายไฟ อุปกรณ์ไฟฟ้าที่จำเป็น
+            การใช้มิเตอร์ คีมปอกสาย คีมย้ำ และหลักความปลอดภัยในฟาร์ม
+          </div>
+        </div>
+        <a class="module-link" href="electric-basic.html">เข้าสู่บทเรียน</a>
+      </div>
+
+      <div class="module-card">
+        <div>
+          <div class="module-badge">Module 3</div>
+          <div class="module-title">ระบบสื่อสาร IoT (WiFi, Zigbee, Z‑Wave, BLE, LoRa)</div>
+          <div class="module-desc">
+            เปรียบเทียบเทคโนโลยีสื่อสารสำหรับ IoT ในงานเกษตร: ระยะทาง ความเร็ว
+            การใช้พลังงาน และตัวอย่างการเลือกใช้ในระบบรดน้ำและฟาร์มขนาดต่าง ๆ
+          </div>
+        </div>
+        <a class="module-link" href="iot-communication.html">เข้าสู่บทเรียน</a>
+      </div>
+
+      <div class="module-card">
+        <div>
+          <div class="module-badge">Module 4</div>
+          <div class="module-title">การใช้ Sonoff ควบคุมอุปกรณ์ไฟฟ้า</div>
+          <div class="module-desc">
+            การต่อ Sonoff แบบ 3 รูปแบบ: ควบคุมโหลดโดยตรง, เพิ่มสวิตช์ Auto / Off / Man,
+            และการใช้ร่วมกับ Magnetic Contactor สำหรับปั๊มน้ำขนาดใหญ่
+          </div>
+        </div>
+        <a class="module-link" href="sonoff-modes.html">เข้าสู่บทเรียน</a>
+      </div>
+
+      <div class="module-card">
+        <div>
+          <div class="module-badge">Module 5</div>
+          <div class="module-title">ตัวอย่างวงจรทดลอง (ทดลอง 1–3)</div>
+          <div class="module-desc">
+            รวมตัวอย่างวงจรจากการทดลองจริง: เปิด–ปิดหลอดไฟ, โหมด Auto / Off / Man,
+            และวงจรที่ใช้ Magnetic Contactor ในระบบรดน้ำอัตโนมัติ
+          </div>
+        </div>
+        <a class="module-link" href="circuits-experiments.html">เข้าสู่บทเรียน</a>
+      </div>
+
+      <div class="module-card">
+        <div>
+          <div class="module-badge">Module 6</div>
+          <div class="module-title">วงจรจำลอง Interactive</div>
+          <div class="module-desc">
+            ทดลองกดสวิตช์ ดูการไหลของไฟฟ้าตามสาย ผ่านวงจรจำลองแบบ Interactive
+            เหมาะสำหรับใช้สอนและอธิบายหลักการทำงานให้ผู้เรียนเข้าใจง่าย
+          </div>
+        </div>
+        <a class="module-link" href="interactive-circuits.html">เข้าสู่บทเรียน</a>
+      </div>
+
+      <div class="module-card">
+        <div>
+          <div class="module-badge">Module 7</div>
+          <div class="module-title">แบบทดสอบและสรุป</div>
+          <div class="module-desc">
+            แบบฝึกหัดและแบบทดสอบสรุปเนื้อหา Smart Farmer, ไฟฟ้าเบื้องต้น,
+            ระบบสื่อสาร IoT, การใช้ Sonoff และวงจรทดลอง เพื่อประเมินความเข้าใจของผู้เรียน
+          </div>
+        </div>
+        <a class="module-link" href="quiz-summary.html">ทำแบบทดสอบ</a>
+      </div>
+
+    </div>
+
+  </div>
+
+  <footer>
+    กรมพัฒนาฝีมือแรงงาน · สถาบันพัฒนาฝีมือแรงงาน 4 ราชบุรี · หลักสูตรการติดตั้งเครื่องรดน้ำระบบอัตโนมัติ
+  </footer>
+
 </body>
 </html>
