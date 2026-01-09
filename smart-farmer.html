@@ -16,9 +16,36 @@
             background-color: #f9f9f9;
         }
 
+        /* ปุ่ม Home มุมซ้ายบน */
+        .nav-home {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .btn-home {
+            background-color: #2E7D32;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: background 0.3s, transform 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-home:hover {
+            background-color: #1B5E20;
+            transform: scale(1.05);
+        }
+
         .container {
             max-width: 900px;
-            margin: 40px auto;
+            margin: 60px auto 40px auto; /* เพิ่ม margin top เพื่อหลบปุ่ม home */
             padding: 20px;
             background: #fff;
             border-radius: 12px;
@@ -90,7 +117,6 @@
             overflow: hidden;
             max-width: 100%;
             border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
         .video-container iframe {
@@ -114,14 +140,35 @@
         footer {
             text-align: center;
             margin-top: 40px;
-            padding: 20px;
+            padding: 30px 20px;
             background: #2E7D32;
             color: white;
             border-radius: 0 0 12px 12px;
         }
+
+        .footer-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: #C8E6C9;
+            text-decoration: none;
+            border: 1px solid #C8E6C9;
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+
+        .footer-link:hover {
+            background: white;
+            color: #2E7D32;
+        }
     </style>
 </head>
 <body>
+
+<nav class="nav-home">
+    <a href="index.html" class="btn-home">
+        <span>🏠</span> หน้าหลัก (Home)
+    </a>
+</nav>
 
 <div class="container">
     <header>
@@ -161,7 +208,7 @@
                     allowfullscreen>
                 </iframe>
             </div>
-            <p style="font-size: 0.9em; color: #666; margin-top: 10px;">ตัวอย่างการประยุกต์ใช้เทคโนโลยีควบคุมความชื้นและอุณหภูมิในโรงเรือน (ราชบุรี)</p>
+            <p style="font-size: 0.9em; color: #666; margin-top: 10px;">ขอบคุณวิดีโอจาก: สถาบันพัฒนาฝีมือแรงงาน 4 ราชบุรี</p>
         </div>
     </section>
 
@@ -203,6 +250,7 @@
 
     <footer>
         <p>เริ่มต้นเป็น Smart Farmer วันนี้ เพื่ออนาคตเกษตรไทยที่ยั่งยืน</p>
+        <a href="index.html" class="footer-link">กลับสู่หน้าหลัก (Back to Index)</a>
     </footer>
 </div>
 
