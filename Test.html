@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>พื้นฐานไฟฟ้า AC และ DC</title>
+
+<style>
+body{
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    margin: 0;
+    background-color: #f4f6f8;
+    line-height: 1.7;
+    color: #333;
+}
+
+header{
+    background: linear-gradient(135deg,#0d47a1,#1976d2);
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+section{
+    max-width: 900px;
+    margin: auto;
+    padding: 30px 20px;
+    background: white;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+h2{
+    color: #0d47a1;
+    border-left: 6px solid #1976d2;
+    padding-left: 10px;
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+table th, table td{
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+table th{
+    background-color: #e3f2fd;
+}
+
+footer{
+    background-color: #0d47a1;
+    color: white;
+    text-align: center;
+    padding: 30px 15px;
+    margin-top: 40px;
+}
+
+/* กล่องปุ่มเมนูมุมซ้าย */
+.menu-fixed{
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* ปุ่ม Home */
+.home-btn{
+    background-color: #ff9800;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+.home-btn:hover{
+    background-color: #f57c00;
+}
+
+/* ปุ่มไฟฟ้าเบื้องต้น */
+.basic-btn{
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    text-align: center;
+    font-size: 14px;
+}
+
+.basic-btn:hover{
+    background-color: #388e3c;
+}
+
+/* ปุ่มใน Footer */
+.footer-btn{
+    display: inline-block;
+    margin-top: 15px;
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 22px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<!-- เมนูมุมบนซ้าย (เห็นตลอดเวลา) -->
+<div class="menu-fixed">
+    <a href="index.html" class="home-btn">🏠 Home</a>
+    <a href="https://suwatjara-svg.github.io/Iot-smart-farm/electric-basic.html"
+       class="basic-btn">
+       ⚡ ไฟฟ้าเบื้องต้น<br>สำหรับ Smart Farm
+    </a>
+</div>
+
+<header>
+    <h1>พื้นฐานไฟฟ้า AC และ DC</h1>
+    <p>ภาษาง่ายสำหรับผู้เริ่มต้น | สื่อการสอน Smart Farm</p>
+</header>
+
+<section>
+    <h2>ไฟฟ้าคืออะไร?</h2>
+    <p>
+        ไฟฟ้า คือพลังงานที่ช่วยให้อุปกรณ์ต่าง ๆ ทำงานได้  
+        เช่น หลอดไฟสว่าง พัดลมหมุน โทรศัพท์เปิดใช้งาน
+    </p>
+    <p>
+        ไฟฟ้าแบ่งออกเป็น 2 ประเภทหลัก คือ  
+        <b>ไฟฟ้ากระแสสลับ (AC)</b> และ <b>ไฟฟ้ากระแสตรง (DC)</b>
+    </p>
+</section>
+
+<section>
+    <h2>⚡ ไฟฟ้ากระแสสลับ (AC)</h2>
+    <p>
+        ไฟฟ้า AC คือไฟฟ้าที่กระแสไฟไหลกลับไปกลับมา  
+        เป็นไฟฟ้าที่ใช้ในบ้านและอาคารทั่วไป
+    </p>
+    <ul>
+        <li>ไฟบ้าน 220V</li>
+        <li>เต้ารับตามผนัง</li>
+        <li>พัดลม ตู้เย็น แอร์</li>
+    </ul>
+    <p style="color:red;">
+        ⚠️ ระวัง: ไฟ AC มีแรงดันสูง อาจเป็นอันตราย
+    </p>
+</section>
+
+<section>
+    <h2>🔋 ไฟฟ้ากระแสตรง (DC)</h2>
+    <p>
+        ไฟฟ้า DC คือไฟฟ้าที่กระแสไฟไหลทางเดียว  
+        เหมาะกับอุปกรณ์อิเล็กทรอนิกส์และระบบ Smart Farm
+    </p>
+    <ul>
+        <li>แบตเตอรี่</li>
+        <li>Adapter / Power Supply</li>
+        <li>บอร์ด IoT และเซนเซอร์</li>
+    </ul>
+    <p>
+        แรงดันที่พบบ่อย: <b>5V, 12V, 24V</b>
+    </p>
+</section>
+
+<section>
+    <h2>🔄 เปรียบเทียบ AC และ DC</h2>
+    <table>
+        <tr>
+            <th>หัวข้อ</th>
+            <th>AC</th>
+            <th>DC</th>
+        </tr>
+        <tr>
+            <td>ทิศทางไฟ</td>
+            <td>กลับไปมา</td>
+            <td>ทางเดียว</td>
+        </tr>
+        <tr>
+            <td>การใช้งาน</td>
+            <td>ไฟบ้าน</td>
+            <td>Smart Farm / IoT</td>
+        </tr>
+    </table>
+</section>
+
+<section>
+    <h2>📘 สรุป</h2>
+    <ul>
+        <li>ไฟบ้าน = AC</li>
+        <li>แบตเตอรี่ = DC</li>
+        <li>อุปกรณ์ Smart Farm ใช้ไฟ DC เป็นหลัก</li>
+        <li>เข้าใจไฟฟ้าช่วยให้ใช้งานปลอดภัยและแม่นยำ</li>
+    </ul>
+</section>
+
+<footer>
+    <p>สื่อการสอน | ไฟฟ้าเบื้องต้นสำหรับ Smart Farm</p>
+    <a href="https://suwatjara-svg.github.io/Iot-smart-farm/electric-basic.html"
+       class="footer-btn">
+       ⚡ ไฟฟ้าเบื้องต้นสำหรับ Smart Farm
+    </a>
+</footer>
+
+</body>
+</html>
