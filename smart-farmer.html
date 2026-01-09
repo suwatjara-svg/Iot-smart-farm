@@ -64,8 +64,6 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
-            overflow-x: auto;
-            display: block;
         }
 
         th, td {
@@ -76,6 +74,32 @@
 
         th { background-color: #4CAF50; color: white; }
         tr:hover { background-color: #f1f1f1; }
+
+        .video-section {
+            text-align: center;
+            margin: 40px 0;
+            padding: 20px;
+            background: #f0f4f0;
+            border-radius: 8px;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
 
         .quote {
             font-style: italic;
@@ -125,33 +149,52 @@
     </section>
 
     <section>
+        <h2>กรณีศึกษา: เทคโนโลยีในฟาร์มจริง</h2>
+        <div class="video-section">
+            <h3>วิดีโอ: การติดตั้งระบบรดน้ำอัตโนมัติ</h3>
+            <div class="video-container">
+                <iframe 
+                    src="https://www.youtube.com/embed/wWQfb3c4_DY" 
+                    title="YouTube video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <p style="font-size: 0.9em; color: #666; margin-top: 10px;">ตัวอย่างการประยุกต์ใช้เทคโนโลยีควบคุมความชื้นและอุณหภูมิในโรงเรือน (ราชบุรี)</p>
+        </div>
+    </section>
+
+    <section>
         <h2>ตารางเปรียบเทียบความแตกต่าง</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>หัวข้อ</th>
-                    <th>เกษตรกรดั้งเดิม</th>
-                    <th>Smart Farmer</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>การผลิต</td>
-                    <td>พึ่งพาฟ้าฝน/ทำตามกันมา</td>
-                    <td>ใช้เทคโนโลยีควบคุมแม่นยำ</td>
-                </tr>
-                <tr>
-                    <td>ต้นทุน</td>
-                    <td>ควบคุมยาก/สารเคมีเยอะ</td>
-                    <td>ลดต้นทุน/ใช้ตามความจำเป็น</td>
-                </tr>
-                <tr>
-                    <td>รายได้</td>
-                    <td>ไม่แน่นอน/ผ่านพ่อค้าคนกลาง</td>
-                    <td>สูงกว่า/ขายตรงถึงผู้บริโภค</td>
-                </tr>
-            </tbody>
-        </table>
+        <div style="overflow-x: auto;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>หัวข้อ</th>
+                        <th>เกษตรกรดั้งเดิม</th>
+                        <th>Smart Farmer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>การผลิต</td>
+                        <td>พึ่งพาฟ้าฝน/ทำตามกันมา</td>
+                        <td>ใช้เทคโนโลยีควบคุมแม่นยำ</td>
+                    </tr>
+                    <tr>
+                        <td>ต้นทุน</td>
+                        <td>ควบคุมยาก/สารเคมีเยอะ</td>
+                        <td>ลดต้นทุน/ใช้ตามความจำเป็น</td>
+                    </tr>
+                    <tr>
+                        <td>รายได้</td>
+                        <td>ไม่แน่นอน/ผ่านพ่อค้าคนกลาง</td>
+                        <td>สูงกว่า/ขายตรงถึงผู้บริโภค</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 
     <div class="quote">
@@ -161,21 +204,6 @@
     <footer>
         <p>เริ่มต้นเป็น Smart Farmer วันนี้ เพื่ออนาคตเกษตรไทยที่ยั่งยืน</p>
     </footer>
-</div>
-
-<div style="text-align: center; margin: 30px 0;">
-    <h3>วิดีโอตัวอย่าง: การติดตั้งระบบรดน้ำอัตโนมัติสำหรับ Smart Farmer</h3>
-    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-        <iframe 
-            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
-            src="https://www.youtube.com/embed/wWQfb3c4_DY" 
-            title="YouTube video player" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
-        </iframe>
-    </div>
-    <p style="font-size: 0.9em; color: #666; margin-top: 10px;">ขอบคุณวิดีโอจาก: สถาบันพัฒนาฝีมือแรงงาน 4 ราชบุรี</p>
 </div>
 
 </body>
