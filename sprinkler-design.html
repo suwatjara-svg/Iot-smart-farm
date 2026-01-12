@@ -4,115 +4,140 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>คำนวณระบบสปริงเกอร์ Smart Farm</title>
-
 <style>
-body{
-    font-family: "Sarabun", sans-serif;
-    background: #f4f6f8;
-    margin: 0;
-    padding: 20px;
-}
-.container{
-    max-width: 900px;
-    margin: auto;
-    background: white;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-h2{
-    color: #0d47a1;
-    border-left: 6px solid #1976d2;
-    padding-left: 10px;
-}
-label{
-    font-weight: bold;
-}
-input, select{
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 15px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-}
-button{
-    width: 100%;
-    padding: 12px;
-    background: #0d47a1;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 18px;
-    cursor: pointer;
-}
-button:hover{
-    background: #1565c0;
-}
-.result-box{
-    background: #e3f2fd;
-    padding: 15px;
-    border-radius: 8px;
-    margin-top: 20px;
-}
+    body{
+        font-family: "Sarabun","Segoe UI",Tahoma,sans-serif;
+        background:#f4f6f8;
+        margin:0;
+        padding:20px;
+    }
+    .container{
+        max-width:1000px;
+        margin:auto;
+        background:#fff;
+        padding:20px;
+        border-radius:12px;
+        box-shadow:0 4px 12px rgba(0,0,0,0.1);
+    }
+    h1{
+        text-align:center;
+        color:#0d47a1;
+    }
+    h2{
+        color:#0d47a1;
+        border-left:6px solid #1976d2;
+        padding-left:10px;
+        margin-top:25px;
+    }
+    label{
+        font-weight:bold;
+    }
+    input,select{
+        width:100%;
+        padding:8px;
+        margin-top:4px;
+        margin-bottom:10px;
+        border-radius:6px;
+        border:1px solid #ccc;
+        box-sizing:border-box;
+    }
+    .row{
+        display:flex;
+        gap:15px;
+    }
+    .col{
+        flex:1;
+    }
+    button{
+        padding:10px 16px;
+        border:none;
+        border-radius:6px;
+        cursor:pointer;
+        font-size:16px;
+    }
+    #addZoneBtn{
+        background:#4caf50;
+        color:white;
+        margin-top:10px;
+    }
+    #calcBtn{
+        background:#0d47a1;
+        color:white;
+        width:100%;
+        margin-top:15px;
+    }
+    table{
+        width:100%;
+        border-collapse:collapse;
+        margin-top:15px;
+        font-size:14px;
+    }
+    th,td{
+        border:1px solid #ccc;
+        padding:6px 8px;
+        text-align:center;
+    }
+    th{
+        background:#e3f2fd;
+    }
+    .zone-card{
+        border:1px solid #ddd;
+        padding:10px;
+        border-radius:8px;
+        margin-top:10px;
+        background:#fafafa;
+    }
+    .small{
+        font-size:12px;
+        color:#555;
+    }
 </style>
 </head>
-
 <body>
-
 <div class="container">
-    <h2>คำนวณระบบสปริงเกอร์ Smart Farm</h2>
+    <h1>คำนวณระบบสปริงเกอร์ Smart Farm</h1>
 
-    <h3>ข้อมูลปั๊มน้ำ</h3>
+    <!-- ข้อมูลปั๊มน้ำ -->
+    <h2>1) ข้อมูลปั๊มน้ำ</h2>
+    <div class="row">
+        <div class="col">
+            <label>อัตราการไหลสูงสุดของปั๊ม (L/min)</label>
+            <input type="number" id="pumpFlowMax" placeholder="เช่น 200">
+        </div>
+        <div class="col">
+            <label>แรงดันสูงสุดของปั๊ม (m)</label>
+            <input type="number" id="pumpHeadMax" placeholder="เช่น 30">
+        </div>
+        <div class="col">
+            <label>ขนาดท่อออกจากปั๊ม</label>
+            <select id="pumpPipeSize">
+                <option value="0.5">1/2 นิ้ว</option>
+                <option value="0.75">3/4 นิ้ว</option>
+                <option value="1">1 นิ้ว</option>
+                <option value="1.25">1 1/4 นิ้ว</option>
+                <option value="1.5">1 1/2 นิ้ว</option>
+                <option value="2">2 นิ้ว</option>
+                <option value="2.5">2 1/2 นิ้ว</option>
+                <option value="3">3 นิ้ว</option>
+            </select>
+        </div>
+    </div>
 
-    <label>อัตราการไหลสูงสุดของปั๊ม (L/min)</label>
-    <input type="number" id="pumpFlow" placeholder="เช่น 200">
+    <!-- โซนสปริงเกอร์ -->
+    <h2>2) ข้อมูลโซนสปริงเกอร์ (เพิ่มได้หลายโซน)</h2>
+    <div id="zonesContainer"></div>
+    <button id="addZoneBtn" type="button" onclick="addZone()">+ เพิ่มโซน</button>
 
-    <label>ขนาดท่อออกจากปั๊ม</label>
-    <select id="pumpPipe">
-        <option value="0.5">1/2 นิ้ว</option>
-        <option value="0.75">3/4 นิ้ว</option>
-        <option value="1">1 นิ้ว</option>
-        <option value="1.25">1 1/4 นิ้ว</option>
-        <option value="1.5">1 1/2 นิ้ว</option>
-        <option value="2">2 นิ้ว</option>
-        <option value="2.5">2 1/2 นิ้ว</option>
-        <option value="3">3 นิ้ว</option>
-    </select>
+    <button id="calcBtn" type="button" onclick="calculate()">คำนวณทั้งหมด</button>
 
-    <h3>ข้อมูลโซนสปริงเกอร์</h3>
-
-    <label>จำนวนหัวสปริงเกอร์ในโซน</label>
-    <input type="number" id="heads" placeholder="เช่น 5">
-
-    <label>อัตราการไหลต่อหัว (L/h)</label>
-    <input type="number" id="flowPerHead" placeholder="เช่น 350">
-
-    <label>ขนาดท่อของโซน</label>
-    <select id="zonePipe">
-        <option value="0.5">1/2 นิ้ว</option>
-        <option value="0.75">3/4 นิ้ว</option>
-        <option value="1">1 นิ้ว</option>
-        <option value="1.25">1 1/4 นิ้ว</option>
-        <option value="1.5">1 1/2 นิ้ว</option>
-        <option value="2">2 นิ้ว</option>
-        <option value="2.5">2 1/2 นิ้ว</option>
-        <option value="3">3 นิ้ว</option>
-    </select>
-
-    <label>ความยาวท่อของโซน (เมตร)</label>
-    <input type="number" id="pipeLength" placeholder="เช่น 40">
-
-    <label>จำนวนข้องอ/ข้อต่อ</label>
-    <input type="number" id="fittings" placeholder="เช่น 8">
-
-    <button onclick="calculate()">คำนวณ</button>
-
-    <div id="result" class="result-box"></div>
+    <!-- ผลลัพธ์ -->
+    <h2>3) ผลลัพธ์</h2>
+    <div id="summary"></div>
+    <div id="zoneTableContainer"></div>
 </div>
 
 <script>
-// ตารางเส้นผ่านศูนย์กลางท่อ (นิ้ว → มม.)
+// ตารางเส้นผ่านศูนย์กลางท่อโดยประมาณ (มม.) สำหรับ PVC
 const pipeDiameter = {
     0.5: 15,
     0.75: 20,
@@ -124,44 +149,218 @@ const pipeDiameter = {
     3: 75
 };
 
+// ค่าสัมประสิทธิ์ Hazen-Williams สำหรับท่อ PVC
+const C_HW = 140;
+
+let zoneIndex = 0;
+
+function addZone(){
+    zoneIndex++;
+    const container = document.getElementById('zonesContainer');
+    const div = document.createElement('div');
+    div.className = 'zone-card';
+    div.dataset.zoneIndex = zoneIndex;
+
+    div.innerHTML = `
+        <h3>โซนที่ ${zoneIndex}</h3>
+        <div class="row">
+            <div class="col">
+                <label>ชื่อโซน</label>
+                <input type="text" id="zoneName_${zoneIndex}" placeholder="เช่น แปลงผัก A">
+            </div>
+            <div class="col">
+                <label>จำนวนหัวสปริงเกอร์ในโซน</label>
+                <input type="number" id="heads_${zoneIndex}" placeholder="เช่น 5">
+            </div>
+            <div class="col">
+                <label>อัตราการไหลต่อหัว (L/h)</label>
+                <input type="number" id="flowPerHead_${zoneIndex}" placeholder="เช่น 350">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label>แรงดันที่หัวต้องการ (bar)</label>
+                <input type="number" id="pressureRequired_${zoneIndex}" placeholder="เช่น 1.5">
+            </div>
+            <div class="col">
+                <label>ขนาดท่อของโซน</label>
+                <select id="zonePipeSize_${zoneIndex}">
+                    <option value="0.5">1/2 นิ้ว</option>
+                    <option value="0.75">3/4 นิ้ว</option>
+                    <option value="1">1 นิ้ว</option>
+                    <option value="1.25">1 1/4 นิ้ว</option>
+                    <option value="1.5">1 1/2 นิ้ว</option>
+                    <option value="2">2 นิ้ว</option>
+                    <option value="2.5">2 1/2 นิ้ว</option>
+                    <option value="3">3 นิ้ว</option>
+                </select>
+            </div>
+            <div class="col">
+                <label>ความยาวท่อของโซน (m)</label>
+                <input type="number" id="pipeLength_${zoneIndex}" placeholder="เช่น 40">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label>จำนวนข้องอ/วาล์ว/ข้อต่อ</label>
+                <input type="number" id="fittings_${zoneIndex}" placeholder="เช่น 8">
+            </div>
+            <div class="col">
+                <label>ความสูงต่างระดับ (m)</label>
+                <input type="number" id="heightDiff_${zoneIndex}" placeholder="เช่น 2">
+            </div>
+        </div>
+        <p class="small">* ใช้สูตร Hazen-Williams ประมาณการ head loss ในท่อ และ minor loss จากข้องอ</p>
+    `;
+    container.appendChild(div);
+}
+
+// คำนวณ Hazen-Williams (Q: m³/s, d: m, L: m) → hf (m)
+function hazenWilliamsHeadLoss(Q, d, L){
+    if(Q <= 0 || d <= 0 || L <= 0) return 0;
+    // แปลง Q เป็น m³/s, d เป็น m, ใช้รูปแบบมาตรฐาน
+    // hf = 10.67 * L * Q^1.852 / (C^1.852 * d^4.87)
+    const C = C_HW;
+    const hf = 10.67 * L * Math.pow(Q, 1.852) /
+               (Math.pow(C, 1.852) * Math.pow(d, 4.87));
+    return hf;
+}
+
+// minor loss ≈ K * v² / (2g) โดย K ≈ 0.5 ต่อข้องอ (ประมาณ)
+function minorLoss(v, fittings){
+    const g = 9.81;
+    const K_each = 0.5;
+    return fittings * K_each * v * v / (2 * g);
+}
+
 function calculate(){
-    let pumpFlow = parseFloat(document.getElementById("pumpFlow").value);
-    let heads = parseFloat(document.getElementById("heads").value);
-    let flowPerHead = parseFloat(document.getElementById("flowPerHead").value);
-    let zonePipe = parseFloat(document.getElementById("zonePipe").value);
-    let pipeLength = parseFloat(document.getElementById("pipeLength").value);
-    let fittings = parseFloat(document.getElementById("fittings").value);
+    const pumpFlowMax = parseFloat(document.getElementById('pumpFlowMax').value) || 0;
+    const pumpHeadMax = parseFloat(document.getElementById('pumpHeadMax').value) || 0;
 
-    // คำนวณ Q รวมของโซน
-    let Q_zone_Lh = heads * flowPerHead;
-    let Q_zone_Lmin = Q_zone_Lh / 60;
+    let zones = [];
+    for(let i=1;i<=zoneIndex;i++){
+        const nameEl = document.getElementById(`zoneName_${i}`);
+        if(!nameEl) continue; // โซนที่ถูกลบ (ถ้ามี) ข้ามไป
 
-    // คำนวณความเร็วในท่อ
-    let D_mm = pipeDiameter[zonePipe];
-    let D_m = D_mm / 1000;
-    let area = Math.PI * Math.pow(D_m/2, 2);
-    let velocity = (Q_zone_Lmin/1000) / area;
+        const name = nameEl.value || `โซนที่ ${i}`;
+        const heads = parseFloat(document.getElementById(`heads_${i}`).value) || 0;
+        const flowPerHead = parseFloat(document.getElementById(`flowPerHead_${i}`).value) || 0;
+        const pressureRequiredBar = parseFloat(document.getElementById(`pressureRequired_${i}`).value) || 0;
+        const zonePipeSize = parseFloat(document.getElementById(`zonePipeSize_${i}`).value) || 0.5;
+        const pipeLength = parseFloat(document.getElementById(`pipeLength_${i}`).value) || 0;
+        const fittings = parseFloat(document.getElementById(`fittings_${i}`).value) || 0;
+        const heightDiff = parseFloat(document.getElementById(`heightDiff_${i}`).value) || 0;
 
-    // คำนวณแรงดันตกแบบง่าย (ประมาณ)
-    let headLossPipe = (velocity * velocity) * pipeLength * 0.03;
-    let headLossFittings = fittings * 0.3;
+        // Q รวมของโซน
+        const Q_Lh = heads * flowPerHead;
+        const Q_Lmin = Q_Lh / 60;
+        const Q_m3s = Q_Lmin / 1000 / 60; // L/min → m³/s
 
-    let totalLoss = headLossPipe + headLossFittings;
+        const D_mm = pipeDiameter[zonePipeSize] || 15;
+        const D_m = D_mm / 1000;
+        const area = Math.PI * Math.pow(D_m/2,2);
+        const v = (area>0) ? Q_m3s / area : 0;
 
-    // ตรวจว่าปั๊มพอไหม
-    let pumpEnough = (pumpFlow >= Q_zone_Lmin) ? "✔️ เพียงพอ" : "❌ ไม่พอ";
+        const hf_pipe = hazenWilliamsHeadLoss(Q_m3s, D_m, pipeLength);
+        const hf_minor = minorLoss(v, fittings);
+        const hf_total = hf_pipe + hf_minor + heightDiff;
 
-    document.getElementById("result").innerHTML = `
-        <h3>ผลการคำนวณ</h3>
-        <p><b>อัตราการไหลรวมของโซน:</b> ${Q_zone_Lmin.toFixed(2)} L/min</p>
-        <p><b>ความเร็วในท่อ:</b> ${velocity.toFixed(2)} m/s</p>
-        <p><b>แรงดันตกในท่อ:</b> ${headLossPipe.toFixed(2)} m</p>
-        <p><b>แรงดันตกจากข้องอ:</b> ${headLossFittings.toFixed(2)} m</p>
-        <p><b>แรงดันสูญเสียรวม:</b> ${totalLoss.toFixed(2)} m</p>
-        <p><b>ปั๊มเพียงพอหรือไม่:</b> ${pumpEnough}</p>
+        // แรงดันที่หัวต้องการ (m)
+        const headAtSprinklerReq = pressureRequiredBar * 10;
+        // head ที่ปั๊มต้องจ่ายอย่างน้อยสำหรับโซนนี้
+        const headRequiredPump = headAtSprinklerReq + hf_total;
+
+        // แรงดันจริงที่หัวถ้าใช้ head ปั๊มเต็ม ๆ (ประมาณการ)
+        let headAtSprinklerActual = pumpHeadMax - (hf_pipe + hf_minor + heightDiff);
+        if(headAtSprinklerActual < 0) headAtSprinklerActual = 0;
+        const pressureAtSprinklerBar = headAtSprinklerActual / 10;
+
+        const pumpFlowEnough = pumpFlowMax >= Q_Lmin;
+        const pumpHeadEnough = pumpHeadMax >= headRequiredPump;
+        const pumpOk = pumpFlowEnough && pumpHeadEnough;
+
+        zones.push({
+            name,
+            heads,
+            flowPerHead,
+            Q_Lmin,
+            v,
+            hf_pipe,
+            hf_minor,
+            heightDiff,
+            hf_total,
+            headAtSprinklerReq,
+            headRequiredPump,
+            pressureAtSprinklerBar,
+            pumpOk,
+            pumpFlowEnough,
+            pumpHeadEnough
+        });
+    }
+
+    // สรุปโหลดรวมถ้าเปิดทุกโซนพร้อมกัน
+    let totalFlowAllZones = zones.reduce((sum,z)=>sum+z.Q_Lmin,0);
+
+    // แสดงผล
+    renderSummary(pumpFlowMax,pumpHeadMax,totalFlowAllZones,zones);
+    renderZoneTable(zones);
+}
+
+function renderSummary(pumpFlowMax,pumpHeadMax,totalFlow,zones){
+    const summaryDiv = document.getElementById('summary');
+    let okFlow = pumpFlowMax >= totalFlow;
+    const textFlow = okFlow ? "✔ เพียงพอ" : "❌ ไม่เพียงพอ";
+
+    summaryDiv.innerHTML = `
+        <p><b>อัตราการไหลรวมเมื่อเปิดทุกโซนพร้อมกัน:</b> ${totalFlow.toFixed(2)} L/min</p>
+        <p><b>ปั๊มจ่ายน้ำตามอัตราการไหลรวมได้หรือไม่:</b> ${textFlow}</p>
+        <p><b>แรงดันสูงสุดของปั๊ม (head):</b> ${pumpHeadMax.toFixed(2)} m</p>
+        <p class="small">* หมายเหตุ: การออกแบบจริงควรมี margin ความปลอดภัยเผื่อประมาณ 10–20%</p>
     `;
 }
-</script>
 
+function renderZoneTable(zones){
+    const container = document.getElementById('zoneTableContainer');
+    if(zones.length === 0){
+        container.innerHTML = "<p>ยังไม่มีข้อมูลโซน</p>";
+        return;
+    }
+
+    let html = `
+    <table>
+        <thead>
+            <tr>
+                <th>โซน</th>
+                <th>Q รวม (L/min)</th>
+                <th>ความเร็ว (m/s)</th>
+                <th>Head loss ท่อ (m)</th>
+                <th>Head loss ข้องอ (m)</th>
+                <th>Head loss รวม + ระดับ (m)</th>
+                <th>แรงดันที่หัว (bar) (ประมาณ)</th>
+                <th>ปั๊มเพียงพอหรือไม่</th>
+            </tr>
+        </thead>
+        <tbody>
+    `;
+
+    zones.forEach(z=>{
+        html += `
+        <tr>
+            <td>${z.name}</td>
+            <td>${z.Q_Lmin.toFixed(2)}</td>
+            <td>${z.v.toFixed(2)}</td>
+            <td>${z.hf_pipe.toFixed(2)}</td>
+            <td>${z.hf_minor.toFixed(2)}</td>
+            <td>${z.hf_total.toFixed(2)}</td>
+            <td>${z.pressureAtSprinklerBar.toFixed(2)}</td>
+            <td>${z.pumpOk ? "✔ Yes" : "❌ No"}</td>
+        </tr>
+        `;
+    });
+
+    html += `</tbody></table>`;
+    container.innerHTML = html;
+}
+</script>
 </body>
 </html>
