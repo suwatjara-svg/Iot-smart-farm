@@ -137,47 +137,52 @@
     }
 
     /* Footer */
-    footer{
-        position:fixed;
-        bottom:0;
-        left:0;
-        width:100%;
-        background:#0d47a1;
-        color:white;
-        padding:10px 20px;
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-        font-size:14px;
-    }
-    footer a{
-        background:#4caf50;
-        padding:8px 14px;
-        border-radius:20px;
-        color:white;
-        text-decoration:none;
-        font-weight:bold;
-    }
-    footer a:hover{
-        background:#43a047;
-    }
+    footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #0d47a1;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
 
-    /* Responsive */
-    @media(max-width:600px){
-        .row{
-            flex-direction:column;
-        }
-        .floating-btn{
-            top:auto;
-            bottom:90px;
-            left:10px;
-        }
-        footer{
-            flex-direction:column;
-            gap:10px;
-            text-align:center;
-        }
+footer span {
+    flex: 1;
+    min-width: 200px;
+}
+
+footer a {
+    background: #4caf50;
+    padding: 8px 14px;
+    border-radius: 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+footer a:hover {
+    background: #43a047;
+}
+
+@media (max-width: 600px) {
+    footer {
+        flex-direction: column;
+        text-align: center;
     }
+    footer span, footer a {
+        width: 100%;
+        max-width: 100%;
+    }
+}
 </style>
 </head>
 
@@ -252,7 +257,7 @@
 <!-- Footer -->
 <footer>
     <span>ระบบคำนวณสปริงเกอร์สำหรับ Smart Farm โดย สุวัฒน์ เจริญพิบูลย์</span>
-    <a href="electric-basic.html">กลับหน้าไฟฟ้าเบื้องต้น</a>
+    <a href="index.html">HOME</a>
 </footer>
 
 <script>
@@ -277,15 +282,15 @@ function addZone(){
         <div class="row">
             <div class="col">
                 <label>จำนวนหัวสปริงเกอร์</label>
-                <input type="number" id="heads_${zoneIndex}">
+                <input type="number" id="heads_${zoneIndex}" placeholder="เช่น 5">
             </div>
             <div class="col">
                 <label>อัตราการไหลต่อหัว (L/h)</label>
-                <input type="number" id="flowPerHead_${zoneIndex}">
+                <input type="number" id="flowPerHead_${zoneIndex}" placeholder="เช่น 350">
             </div>
             <div class="col">
                 <label>แรงดันที่หัวต้องการ (bar)</label>
-                <input type="number" id="pressureRequired_${zoneIndex}">
+                <input type="number" id="pressureRequired_${zoneIndex}" placeholder="เช่น 1.5">
             </div>
         </div>
 
@@ -302,11 +307,11 @@ function addZone(){
             </div>
             <div class="col">
                 <label>จำนวนข้องอ/วาล์ว</label>
-                <input type="number" id="fittings_${zoneIndex}">
+                <input type="number" id="fittings_${zoneIndex}" placeholder="เช่น 2">
             </div>
             <div class="col">
                 <label>ความยาวท่อ (m)</label>
-                <input type="number" id="pipeLength_${zoneIndex}">
+                <input type="number" id="pipeLength_${zoneIndex}" placeholder="เช่น 30">
             </div>
         </div>
     `;
