@@ -4,13 +4,33 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>คำนวณระบบสปริงเกอร์ Smart Farm</title>
+
 <style>
     body{
         font-family: "Sarabun","Segoe UI",Tahoma,sans-serif;
         background:#f4f6f8;
         margin:0;
-        padding:20px;
+        padding:0;
     }
+
+    /* Floating Button */
+    .floating-btn{
+        position:fixed;
+        top:80px;
+        left:15px;
+        background:#ff9800;
+        color:white;
+        padding:10px 16px;
+        border-radius:30px;
+        text-decoration:none;
+        font-weight:bold;
+        box-shadow:0 4px 10px rgba(0,0,0,0.3);
+        z-index:999;
+    }
+    .floating-btn:hover{
+        background:#f57c00;
+    }
+
     .container{
         max-width:1000px;
         margin:auto;
@@ -18,7 +38,17 @@
         padding:20px;
         border-radius:12px;
         box-shadow:0 4px 12px rgba(0,0,0,0.1);
+        margin-top:20px;
+        margin-bottom:80px;
     }
+
+    /* Header Image */
+    .header-img{
+        width:100%;
+        border-radius:10px;
+        margin-bottom:20px;
+    }
+
     h1{
         text-align:center;
         color:#0d47a1;
@@ -29,6 +59,7 @@
         padding-left:10px;
         margin-top:25px;
     }
+
     label{
         font-weight:bold;
     }
@@ -41,6 +72,7 @@
         border:1px solid #ccc;
         box-sizing:border-box;
     }
+
     .row{
         display:flex;
         gap:15px;
@@ -48,6 +80,7 @@
     .col{
         flex:1;
     }
+
     button{
         padding:10px 16px;
         border:none;
@@ -66,6 +99,17 @@
         width:100%;
         margin-top:15px;
     }
+
+    /* Zone Card */
+    .zone-card{
+        border:1px solid #ddd;
+        padding:10px;
+        border-radius:8px;
+        margin-top:10px;
+        background:#fafafa;
+    }
+
+    /* Table */
     table{
         width:100%;
         border-collapse:collapse;
@@ -80,24 +124,77 @@
     th{
         background:#e3f2fd;
     }
-    .zone-card{
-        border:1px solid #ddd;
-        padding:10px;
-        border-radius:8px;
-        margin-top:10px;
-        background:#fafafa;
+    tr:nth-child(even){
+        background:#f9f9f9;
     }
+    tr:hover{
+        background:#e1f5fe;
+    }
+
     .small{
         font-size:12px;
-        color:#555;
+        color:#666;
+    }
+
+    /* Footer */
+    footer{
+        position:fixed;
+        bottom:0;
+        left:0;
+        width:100%;
+        background:#0d47a1;
+        color:white;
+        padding:10px 20px;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        font-size:14px;
+    }
+    footer a{
+        background:#4caf50;
+        padding:8px 14px;
+        border-radius:20px;
+        color:white;
+        text-decoration:none;
+        font-weight:bold;
+    }
+    footer a:hover{
+        background:#43a047;
+    }
+
+    /* Responsive */
+    @media(max-width:600px){
+        .row{
+            flex-direction:column;
+        }
+        .floating-btn{
+            top:auto;
+            bottom:90px;
+            left:10px;
+        }
+        footer{
+            flex-direction:column;
+            gap:10px;
+            text-align:center;
+        }
     }
 </style>
 </head>
+
 <body>
+
+<!-- Floating Button -->
+<a href="index.html" class="floating-btn">🏠 กลับหน้าแรก</a>
+
 <div class="container">
+
+    <!-- Header Image -->
+    <img src="https://cdn.pixabay.com/photo/2016/11/29/04/17/irrigation-1866531_1280.jpg"
+         alt="ระบบสปริงเกอร์ในฟาร์ม" class="header-img">
+
     <h1>คำนวณระบบสปริงเกอร์ Smart Farm</h1>
 
-    <!-- ข้อมูลปั๊มน้ำ -->
+    <!-- Pump Info -->
     <h2>1) ข้อมูลปั๊มน้ำ</h2>
     <div class="row">
         <div class="col">
@@ -123,7 +220,6 @@
         </div>
     </div>
 
-    <!-- Margin -->
     <label>เผื่อ Margin ความปลอดภัย (%)</label>
     <select id="safetyMargin">
         <option value="0.10">10%</option>
@@ -134,35 +230,40 @@
         <option value="0.40">40%</option>
     </select>
 
-    <!-- โซนสปริงเกอร์ -->
-    <h2>2) ข้อมูลโซนสปริงเกอร์ (เพิ่มได้หลายโซน)</h2>
+    <!-- Zones -->
+    <h2>2) ข้อมูลโซนสปริงเกอร์</h2>
     <div id="zonesContainer"></div>
-    <button id="addZoneBtn" type="button" onclick="addZone()">+ เพิ่มโซน</button>
+    <button id="addZoneBtn" onclick="addZone()">+ เพิ่มโซน</button>
 
-    <button id="calcBtn" type="button" onclick="calculate()">คำนวณทั้งหมด</button>
+    <button id="calcBtn" onclick="calculate()">คำนวณทั้งหมด</button>
 
-    <!-- ผลลัพธ์ -->
+    <!-- Results -->
     <h2>3) ผลลัพธ์</h2>
     <div id="summary"></div>
     <div id="zoneTableContainer"></div>
+
+    <p class="small">
+        ✔ Yes หมายถึงปั๊มสามารถจ่ายน้ำและแรงดันได้เพียงพอสำหรับโซนนั้น  
+        ❌ No หมายถึงปั๊มไม่สามารถจ่ายน้ำหรือแรงดันได้ตามต้องการ
+    </p>
+
 </div>
 
+<!-- Footer -->
+<footer>
+    <span>ระบบคำนวณสปริงเกอร์สำหรับ Smart Farm โดย สุวัฒน์ เจริญพิบูลย์ </span>
+    <a href="index.html">HOME</a>
+</footer>
+
 <script>
-// ตารางเส้นผ่านศูนย์กลางท่อโดยประมาณ (มม.)
+/* ========== JavaScript คำนวณระบบสปริงเกอร์ ========== */
+
 const pipeDiameter = {
-    0.5: 15,
-    0.75: 20,
-    1: 25,
-    1.25: 32,
-    1.5: 40,
-    2: 50,
-    2.5: 63,
-    3: 75
+    0.5: 15, 0.75: 20, 1: 25, 1.25: 32,
+    1.5: 40, 2: 50, 2.5: 63, 3: 75
 };
 
-// ค่าสัมประสิทธิ์ Hazen-Williams สำหรับท่อ PVC
 const C_HW = 140;
-
 let zoneIndex = 0;
 
 function addZone(){
@@ -170,29 +271,25 @@ function addZone(){
     const container = document.getElementById('zonesContainer');
     const div = document.createElement('div');
     div.className = 'zone-card';
-    div.dataset.zoneIndex = zoneIndex;
 
     div.innerHTML = `
         <h3>โซนที่ ${zoneIndex}</h3>
         <div class="row">
             <div class="col">
-                <label>ชื่อโซน</label>
-                <input type="text" id="zoneName_${zoneIndex}" placeholder="เช่น แปลงผัก A">
-            </div>
-            <div class="col">
-                <label>จำนวนหัวสปริงเกอร์ในโซน</label>
-                <input type="number" id="heads_${zoneIndex}" placeholder="เช่น 5">
+                <label>จำนวนหัวสปริงเกอร์</label>
+                <input type="number" id="heads_${zoneIndex}">
             </div>
             <div class="col">
                 <label>อัตราการไหลต่อหัว (L/h)</label>
-                <input type="number" id="flowPerHead_${zoneIndex}" placeholder="เช่น 350">
+                <input type="number" id="flowPerHead_${zoneIndex}">
             </div>
-        </div>
-        <div class="row">
             <div class="col">
                 <label>แรงดันที่หัวต้องการ (bar)</label>
-                <input type="number" id="pressureRequired_${zoneIndex}" placeholder="เช่น 1.5">
+                <input type="number" id="pressureRequired_${zoneIndex}">
             </div>
+        </div>
+
+        <div class="row">
             <div class="col">
                 <label>ขนาดท่อของโซน</label>
                 <select id="zonePipeSize_${zoneIndex}">
@@ -201,160 +298,108 @@ function addZone(){
                     <option value="1">1 นิ้ว</option>
                     <option value="1.25">1 1/4 นิ้ว</option>
                     <option value="1.5">1 1/2 นิ้ว</option>
-                    <option value="2">2 นิ้ว</option>
-                    <option value="2.5">2 1/2 นิ้ว</option>
-                    <option value="3">3 นิ้ว</option>
                 </select>
             </div>
             <div class="col">
-                <label>ความยาวท่อของโซน (m)</label>
-                <input type="number" id="pipeLength_${zoneIndex}" placeholder="เช่น 40">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <label>จำนวนข้องอ/วาล์ว/ข้อต่อ</label>
-                <input type="number" id="fittings_${zoneIndex}" placeholder="เช่น 8">
+                <label>จำนวนข้องอ/วาล์ว</label>
+                <input type="number" id="fittings_${zoneIndex}">
             </div>
             <div class="col">
-                <label>ความสูงต่างระดับ (m)</label>
-                <input type="number" id="heightDiff_${zoneIndex}" placeholder="เช่น 2">
+                <label>ความยาวท่อ (m)</label>
+                <input type="number" id="pipeLength_${zoneIndex}">
             </div>
         </div>
-        <p class="small">* ใช้สูตร Hazen-Williams ประมาณการ head loss ในท่อ และ minor loss จากข้องอ</p>
     `;
     container.appendChild(div);
 }
 
-// Hazen-Williams
-function hazenWilliamsHeadLoss(Q, d, L){
-    if(Q <= 0 || d <= 0 || L <= 0) return 0;
-    return 10.67 * L * Math.pow(Q, 1.852) /
-           (Math.pow(C_HW, 1.852) * Math.pow(d, 4.87));
+function hazenWilliams(Q, d, L){
+    return 10.67 * L * Math.pow(Q,1.852) /
+           (Math.pow(C_HW,1.852) * Math.pow(d,4.87));
 }
 
-// Minor loss
 function minorLoss(v, fittings){
     const g = 9.81;
-    const K_each = 0.5;
-    return fittings * K_each * v * v / (2 * g);
+    return fittings * 0.5 * v*v / (2*g);
 }
 
 function calculate(){
-    const pumpFlowMax = parseFloat(document.getElementById('pumpFlowMax').value) || 0;
-    const pumpHeadMax = parseFloat(document.getElementById('pumpHeadMax').value) || 0;
+    const pumpFlowMax = parseFloat(document.getElementById('pumpFlowMax').value);
+    const pumpHeadMax = parseFloat(document.getElementById('pumpHeadMax').value);
     const safetyMargin = parseFloat(document.getElementById('safetyMargin').value);
 
     let zones = [];
+    let totalFlow = 0;
 
     for(let i=1;i<=zoneIndex;i++){
-        const nameEl = document.getElementById(`zoneName_${i}`);
-        if(!nameEl) continue;
+        const heads = parseFloat(document.getElementById(`heads_${i}`).value);
+        const flowPerHead = parseFloat(document.getElementById(`flowPerHead_${i}`).value);
+        const pressureRequired = parseFloat(document.getElementById(`pressureRequired_${i}`).value);
+        const pipeSize = parseFloat(document.getElementById(`zonePipeSize_${i}`).value);
+        const fittings = parseFloat(document.getElementById(`fittings_${i}`).value);
+        const pipeLength = parseFloat(document.getElementById(`pipeLength_${i}`).value);
 
-        const name = nameEl.value || `โซนที่ ${i}`;
-        const heads = parseFloat(document.getElementById(`heads_${i}`).value) || 0;
-        const flowPerHead = parseFloat(document.getElementById(`flowPerHead_${i}`).value) || 0;
-        const pressureRequiredBar = parseFloat(document.getElementById(`pressureRequired_${i}`).value) || 0;
-        const zonePipeSize = parseFloat(document.getElementById(`zonePipeSize_${i}`).value) || 0.5;
-        const pipeLength = parseFloat(document.getElementById(`pipeLength_${i}`).value) || 0;
-        const fittings = parseFloat(document.getElementById(`fittings_${i}`).value) || 0;
-        const heightDiff = parseFloat(document.getElementById(`heightDiff_${i}`).value) || 0;
+        const Q_Lmin = (heads * flowPerHead) / 60;
+        totalFlow += Q_Lmin;
 
-        const Q_Lh = heads * flowPerHead;
-        const Q_Lmin = Q_Lh / 60;
         const Q_m3s = Q_Lmin / 1000 / 60;
-
-        const D_mm = pipeDiameter[zonePipeSize];
-        const D_m = D_mm / 1000;
+        const D_m = pipeDiameter[pipeSize] / 1000;
         const area = Math.PI * Math.pow(D_m/2,2);
         const v = Q_m3s / area;
 
-        const hf_pipe = hazenWilliamsHeadLoss(Q_m3s, D_m, pipeLength);
+        const hf_pipe = hazenWilliams(Q_m3s, D_m, pipeLength);
         const hf_minor = minorLoss(v, fittings);
+        const hf_total = (hf_pipe + hf_minor) * (1 + safetyMargin);
 
-        const hf_total = (hf_pipe + hf_minor + heightDiff) * (1 + safetyMargin);
+        const headAtSprinkler = pumpHeadMax - hf_total;
+        const pressureBar = headAtSprinkler / 10;
 
-        const headAtSprinklerReq = pressureRequiredBar * 10;
-        const headRequiredPump = headAtSprinklerReq + hf_total;
-
-        let headAtSprinklerActual = pumpHeadMax - hf_total;
-        if(headAtSprinklerActual < 0) headAtSprinklerActual = 0;
-
-        const pressureAtSprinklerBar = headAtSprinklerActual / 10;
-
-        const pumpFlowEnough = pumpFlowMax >= Q_Lmin;
-        const pumpHeadEnough = pumpHeadMax >= headRequiredPump;
-        const pumpOk = pumpFlowEnough && pumpHeadEnough;
+        const pumpOk = (pumpFlowMax >= Q_Lmin) && (pressureBar >= pressureRequired);
 
         zones.push({
-            name,
+            zone:i,
             Q_Lmin,
-            v,
             hf_pipe,
-            hf_minor,
             hf_total,
-            pressureAtSprinklerBar,
+            pressureBar,
             pumpOk
         });
     }
 
-    renderSummary(pumpFlowMax,pumpHeadMax,zones);
-    renderZoneTable(zones);
-}
-
-function renderSummary(pumpFlowMax,pumpHeadMax,zones){
-    const totalFlow = zones.reduce((sum,z)=>sum+z.Q_Lmin,0);
-    const summaryDiv = document.getElementById('summary');
-
-    summaryDiv.innerHTML = `
-        <p><b>อัตราการไหลรวมเมื่อเปิดทุกโซนพร้อมกัน:</b> ${totalFlow.toFixed(2)} L/min</p>
-        <p><b>แรงดันสูงสุดของปั๊ม:</b> ${pumpHeadMax.toFixed(2)} m</p>
-        <p class="small">* มีการเผื่อ Margin ความปลอดภัยตามที่เลือก</p>
+    document.getElementById("summary").innerHTML = `
+        <p><b>อัตราการไหลรวมเมื่อเปิดทุกโซน:</b> ${totalFlow.toFixed(2)} L/min</p>
+        <p><b>แรงดันสูงสุดของปั๊ม:</b> ${pumpHeadMax} m</p>
     `;
-}
-
-function renderZoneTable(zones){
-    const container = document.getElementById('zoneTableContainer');
-    if(zones.length === 0){
-        container.innerHTML = "<p>ยังไม่มีข้อมูลโซน</p>";
-        return;
-    }
 
     let html = `
-    <table>
-        <thead>
+        <table>
             <tr>
                 <th>โซน</th>
-                <th>Q รวม (L/min)</th>
-                <th>ความเร็ว (m/s)</th>
-                <th>Head loss ท่อ (m)</th>
-                <th>Head loss ข้องอ (m)</th>
+                <th>อัตราการไหล (L/min)</th>
+                <th>Head loss (m)</th>
                 <th>Head loss รวม + Margin (m)</th>
                 <th>แรงดันที่หัว (bar)</th>
                 <th>ปั๊มเพียงพอหรือไม่</th>
             </tr>
-        </thead>
-        <tbody>
     `;
 
     zones.forEach(z=>{
         html += `
-        <tr>
-            <td>${z.name}</td>
-            <td>${z.Q_Lmin.toFixed(2)}</td>
-            <td>${z.v.toFixed(2)}</td>
-            <td>${z.hf_pipe.toFixed(2)}</td>
-            <td>${z.hf_minor.toFixed(2)}</td>
-            <td>${z.hf_total.toFixed(2)}</td>
-            <td>${z.pressureAtSprinklerBar.toFixed(2)}</td>
-            <td>${z.pumpOk ? "✔ Yes" : "❌ No"}</td>
-        </tr>
+            <tr>
+                <td>${z.zone}</td>
+                <td>${z.Q_Lmin.toFixed(2)}</td>
+                <td>${z.hf_pipe.toFixed(2)}</td>
+                <td>${z.hf_total.toFixed(2)}</td>
+                <td>${z.pressureBar.toFixed(2)}</td>
+                <td>${z.pumpOk ? "✔ Yes" : "❌ No"}</td>
+            </tr>
         `;
     });
 
-    html += `</tbody></table>`;
-    container.innerHTML = html;
+    html += `</table>`;
+    document.getElementById("zoneTableContainer").innerHTML = html;
 }
 </script>
+
 </body>
 </html>
