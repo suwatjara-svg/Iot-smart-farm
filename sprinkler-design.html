@@ -123,6 +123,17 @@
         </div>
     </div>
 
+    <!-- Margin -->
+    <label>เผื่อ Margin ความปลอดภัย (%)</label>
+    <select id="safetyMargin">
+        <option value="0.10">10%</option>
+        <option value="0.15">15%</option>
+        <option value="0.20" selected>20%</option>
+        <option value="0.25">25%</option>
+        <option value="0.30">30%</option>
+        <option value="0.40">40%</option>
+    </select>
+
     <!-- โซนสปริงเกอร์ -->
     <h2>2) ข้อมูลโซนสปริงเกอร์ (เพิ่มได้หลายโซน)</h2>
     <div id="zonesContainer"></div>
@@ -137,7 +148,7 @@
 </div>
 
 <script>
-// ตารางเส้นผ่านศูนย์กลางท่อโดยประมาณ (มม.) สำหรับ PVC
+// ตารางเส้นผ่านศูนย์กลางท่อโดยประมาณ (มม.)
 const pipeDiameter = {
     0.5: 15,
     0.75: 20,
@@ -215,18 +226,14 @@ function addZone(){
     container.appendChild(div);
 }
 
-// คำนวณ Hazen-Williams (Q: m³/s, d: m, L: m) → hf (m)
+// Hazen-Williams
 function hazenWilliamsHeadLoss(Q, d, L){
     if(Q <= 0 || d <= 0 || L <= 0) return 0;
-    // แปลง Q เป็น m³/s, d เป็น m, ใช้รูปแบบมาตรฐาน
-    // hf = 10.67 * L * Q^1.852 / (C^1.852 * d^4.87)
-    const C = C_HW;
-    const hf = 10.67 * L * Math.pow(Q, 1.852) /
-               (Math.pow(C, 1.852) * Math.pow(d, 4.87));
-    return hf;
+    return 10.67 * L * Math.pow(Q, 1.852) /
+           (Math.pow(C_HW, 1.852) * Math.pow(d, 4.87));
 }
 
-// minor loss ≈ K * v² / (2g) โดย K ≈ 0.5 ต่อข้องอ (ประมาณ)
+// Minor loss
 function minorLoss(v, fittings){
     const g = 9.81;
     const K_each = 0.5;
@@ -236,11 +243,13 @@ function minorLoss(v, fittings){
 function calculate(){
     const pumpFlowMax = parseFloat(document.getElementById('pumpFlowMax').value) || 0;
     const pumpHeadMax = parseFloat(document.getElementById('pumpHeadMax').value) || 0;
+    const safetyMargin = parseFloat(document.getElementById('safetyMargin').value);
 
     let zones = [];
+
     for(let i=1;i<=zoneIndex;i++){
         const nameEl = document.getElementById(`zoneName_${i}`);
-        if(!nameEl) continue; // โซนที่ถูกลบ (ถ้ามี) ข้ามไป
+        if(!nameEl) continue;
 
         const name = nameEl.value || `โซนที่ ${i}`;
         const heads = parseFloat(document.getElementById(`heads_${i}`).value) || 0;
@@ -251,28 +260,26 @@ function calculate(){
         const fittings = parseFloat(document.getElementById(`fittings_${i}`).value) || 0;
         const heightDiff = parseFloat(document.getElementById(`heightDiff_${i}`).value) || 0;
 
-        // Q รวมของโซน
         const Q_Lh = heads * flowPerHead;
         const Q_Lmin = Q_Lh / 60;
-        const Q_m3s = Q_Lmin / 1000 / 60; // L/min → m³/s
+        const Q_m3s = Q_Lmin / 1000 / 60;
 
-        const D_mm = pipeDiameter[zonePipeSize] || 15;
+        const D_mm = pipeDiameter[zonePipeSize];
         const D_m = D_mm / 1000;
         const area = Math.PI * Math.pow(D_m/2,2);
-        const v = (area>0) ? Q_m3s / area : 0;
+        const v = Q_m3s / area;
 
         const hf_pipe = hazenWilliamsHeadLoss(Q_m3s, D_m, pipeLength);
         const hf_minor = minorLoss(v, fittings);
-        const hf_total = hf_pipe + hf_minor + heightDiff;
 
-        // แรงดันที่หัวต้องการ (m)
+        const hf_total = (hf_pipe + hf_minor + heightDiff) * (1 + safetyMargin);
+
         const headAtSprinklerReq = pressureRequiredBar * 10;
-        // head ที่ปั๊มต้องจ่ายอย่างน้อยสำหรับโซนนี้
         const headRequiredPump = headAtSprinklerReq + hf_total;
 
-        // แรงดันจริงที่หัวถ้าใช้ head ปั๊มเต็ม ๆ (ประมาณการ)
-        let headAtSprinklerActual = pumpHeadMax - (hf_pipe + hf_minor + heightDiff);
+        let headAtSprinklerActual = pumpHeadMax - hf_total;
         if(headAtSprinklerActual < 0) headAtSprinklerActual = 0;
+
         const pressureAtSprinklerBar = headAtSprinklerActual / 10;
 
         const pumpFlowEnough = pumpFlowMax >= Q_Lmin;
@@ -281,41 +288,28 @@ function calculate(){
 
         zones.push({
             name,
-            heads,
-            flowPerHead,
             Q_Lmin,
             v,
             hf_pipe,
             hf_minor,
-            heightDiff,
             hf_total,
-            headAtSprinklerReq,
-            headRequiredPump,
             pressureAtSprinklerBar,
-            pumpOk,
-            pumpFlowEnough,
-            pumpHeadEnough
+            pumpOk
         });
     }
 
-    // สรุปโหลดรวมถ้าเปิดทุกโซนพร้อมกัน
-    let totalFlowAllZones = zones.reduce((sum,z)=>sum+z.Q_Lmin,0);
-
-    // แสดงผล
-    renderSummary(pumpFlowMax,pumpHeadMax,totalFlowAllZones,zones);
+    renderSummary(pumpFlowMax,pumpHeadMax,zones);
     renderZoneTable(zones);
 }
 
-function renderSummary(pumpFlowMax,pumpHeadMax,totalFlow,zones){
+function renderSummary(pumpFlowMax,pumpHeadMax,zones){
+    const totalFlow = zones.reduce((sum,z)=>sum+z.Q_Lmin,0);
     const summaryDiv = document.getElementById('summary');
-    let okFlow = pumpFlowMax >= totalFlow;
-    const textFlow = okFlow ? "✔ เพียงพอ" : "❌ ไม่เพียงพอ";
 
     summaryDiv.innerHTML = `
         <p><b>อัตราการไหลรวมเมื่อเปิดทุกโซนพร้อมกัน:</b> ${totalFlow.toFixed(2)} L/min</p>
-        <p><b>ปั๊มจ่ายน้ำตามอัตราการไหลรวมได้หรือไม่:</b> ${textFlow}</p>
-        <p><b>แรงดันสูงสุดของปั๊ม (head):</b> ${pumpHeadMax.toFixed(2)} m</p>
-        <p class="small">* หมายเหตุ: การออกแบบจริงควรมี margin ความปลอดภัยเผื่อประมาณ 10–20%</p>
+        <p><b>แรงดันสูงสุดของปั๊ม:</b> ${pumpHeadMax.toFixed(2)} m</p>
+        <p class="small">* มีการเผื่อ Margin ความปลอดภัยตามที่เลือก</p>
     `;
 }
 
@@ -335,8 +329,8 @@ function renderZoneTable(zones){
                 <th>ความเร็ว (m/s)</th>
                 <th>Head loss ท่อ (m)</th>
                 <th>Head loss ข้องอ (m)</th>
-                <th>Head loss รวม + ระดับ (m)</th>
-                <th>แรงดันที่หัว (bar) (ประมาณ)</th>
+                <th>Head loss รวม + Margin (m)</th>
+                <th>แรงดันที่หัว (bar)</th>
                 <th>ปั๊มเพียงพอหรือไม่</th>
             </tr>
         </thead>
