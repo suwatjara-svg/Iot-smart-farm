@@ -80,11 +80,42 @@ footer{
     background-color: #f57c00;
 }
 
+/* ปุ่มไฟฟ้าเบื้องต้น (ติดหน้าจอ) */
+.electric-fixed{
+    position: fixed;
+    top: 65px; /* อยู่ใต้ปุ่ม Home */
+    left: 15px;
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    z-index: 999;
+}
+
+.electric-fixed:hover{
+    background-color: #388e3c;
+}
+
 /* ปุ่ม Home ใน Footer */
 .footer-home{
     display: inline-block;
     margin-top: 15px;
     background-color: #ff9800;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* ปุ่มใน Footer */
+.footer-electric{
+    display: inline-block;
+    margin-top: 15px;
+    background-color: #4caf50;
     color: white;
     padding: 10px 20px;
     border-radius: 25px;
@@ -98,6 +129,9 @@ footer{
 
 <!-- ปุ่ม Home มุมบนซ้าย -->
 <a href="index.html" class="home-fixed">🏠 Home</a>
+
+<!-- ปุ่มไฟฟ้าเบื้องต้น มุมบนซ้าย -->
+<a href="https://suwatjara-svg.github.io/Iot-smart-farm/electric-basic.html" class="electric-fixed">⚡ ไฟฟ้าเบื้องต้น</a>
 
 <header>
     <h1>พื้นฐานไฟฟ้า AC และ DC</h1>
@@ -217,6 +251,15 @@ footer{
 
 <footer>
     <p>สื่อการสอนพื้นฐานไฟฟ้า | หลักสูตร IoT และอิเล็กทรอนิกส์</p>
+
+    <!-- ปุ่มกลับหน้าไฟฟ้าเบื้องต้น -->
+    <a href="https://suwatjara-svg.github.io/Iot-smart-farm/electric-basic.html" class="footer-electric">
+        ⚡ ไฟฟ้าเบื้องต้นสำหรับ Smart Farm
+    </a>
+
+    <br>
+
+    <!-- ปุ่มกลับหน้า Home -->
     <a href="index.html" class="footer-home">🏠 กลับหน้า Home</a>
 </footer>
 
