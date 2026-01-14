@@ -348,47 +348,40 @@ function calculate(){
     let totalFlow = 0;
 
     for(let i=1;i<=zoneIndex;i++){
-    const heads = parseFloat(document.getElementById(`heads_${i}`).value);
-    const flowPerHead = parseFloat(document.getElementById(`flowPerHead_${i}`).value);
-    const pressureRequired = parseFloat(document.getElementById(`pressureRequired_${i}`).value);
-    const pipeSize = parseFloat(document.getElementById(`zonePipeSize_${i}`).value);
-    const fittings = parseFloat(document.getElementById(`fittings_${i}`).value);
-    const pipeLength = parseFloat(document.getElementById(`pipeLength_${i}`).value);
-    const heightDiff = parseFloat(document.getElementById(`heightDiff_${i}`).value) || 0;
+        const heads = parseFloat(document.getElementById(`heads_${i}`).value);
+        const flowPerHead = parseFloat(document.getElementById(`flowPerHead_${i}`).value);
+        const pressureRequired = parseFloat(document.getElementById(`pressureRequired_${i}`).value);
+        const pipeSize = parseFloat(document.getElementById(`zonePipeSize_${i}`).value);
+        const fittings = parseFloat(document.getElementById(`fittings_${i}`).value);
+        const pipeLength = parseFloat(document.getElementById(`pipeLength_${i}`).value);
+        const heightDiff = parseFloat(document.getElementById(`heightDiff_${i}`).value) || 0;
 
-    const Q_Lmin = (heads * flowPerHead) / 60;
-    totalFlow += Q_Lmin;
+        const Q_Lmin = (heads * flowPerHead) / 60;
+        totalFlow += Q_Lmin;
 
-    const Q_m3s = Q_Lmin / 1000 / 60;
-    const D_m = pipeDiameter[pipeSize] / 1000;
-    const area = Math.PI * Math.pow(D_m/2,2);
-    const v = Q_m3s / area;
+        const Q_m3s = Q_Lmin / 1000 / 60;
+        const D_m = pipeDiameter[pipeSize] / 1000;
+        const area = Math.PI * Math.pow(D_m/2,2);
+        const v = Q_m3s / area;
 
-    const hf_pipe = hazenWilliams(Q_m3s, D_m, pipeLength);
-    const hf_minor = minorLoss(v, fittings);
-    const hf_total = (hf_pipe + hf_minor + heightDiff) * (1 + safetyMargin);
+        const hf_pipe = hazenWilliams(Q_m3s, D_m, pipeLength);
+        const hf_minor = minorLoss(v, fittings);
+        const hf_total = (hf_pipe + hf_minor + heightDiff) * (1 + safetyMargin);
+        
+        const headAtSprinkler = pumpHeadMax - hf_total;
+        const pressureBar = headAtSprinkler / 10;
 
-    const headAtSprinkler = pumpHeadMax - hf_total;
-    const pressureBar = headAtSprinkler / 10;
+        const pumpOk = (pumpFlowMax >= Q_Lmin) && (pressureBar >= pressureRequired);
 
-    // รวมความสูงอาคารเข้าแรงดันที่ต้องการ
-    const requiredHead = pressureRequired * 10;       // bar → m
-    const requiredHeadTotal = requiredHead + heightDiff;
-    const headRemaining = headAtSprinkler;            // แรงดันที่ปั๊มเหลือจริง (m)
-
-    const pumpOk = (pumpFlowMax >= Q_Lmin) && (headAtSprinkler >= requiredHeadTotal);
-
-    zones.push({
-    zone:i,
-    Q_Lmin,
-    hf_pipe,
-    hf_total,
-    pressureBar,
-    requiredHeadTotal,
-    headRemaining,
-    pumpOk
-});
-   }
+        zones.push({
+            zone:i,
+            Q_Lmin,
+            hf_pipe,
+            hf_total,
+            pressureBar,
+            pumpOk
+        });
+    }
 
     document.getElementById("summary").innerHTML = `
         <p><b>อัตราการไหลรวมเมื่อเปิดทุกโซน:</b> ${totalFlow.toFixed(2)} L/min</p>
@@ -396,31 +389,29 @@ function calculate(){
     `;
 
     let html = `
-    <table>
-        <tr>
-            <th>โซน</th>
-            <th>อัตราการไหล (L/min)</th>
-            <th>Head loss (m)</th>
-            <th>Head loss รวม + Margin (m)</th>
-            <th>แรงดันที่ต้องการรวม (m)</th>
-            <th>แรงดันที่ปั๊มเหลือจริง (m)</th>
-            <th>ปั๊มเพียงพอหรือไม่</th>
-        </tr>
-`;
+        <table>
+            <tr>
+                <th>โซน</th>
+                <th>อัตราการไหล (L/min)</th>
+                <th>Head loss (m)</th>
+                <th>Head loss รวม + Margin (m)</th>
+                <th>แรงดันที่หัว (bar)</th>
+                <th>ปั๊มเพียงพอหรือไม่</th>
+            </tr>
+    `;
 
     zones.forEach(z=>{
-    html += `
-        <tr>
-            <td>${z.zone}</td>
-            <td>${z.Q_Lmin.toFixed(2)}</td>
-            <td>${z.hf_pipe.toFixed(2)}</td>
-            <td>${z.hf_total.toFixed(2)}</td>
-            <td>${z.requiredHeadTotal.toFixed(2)}</td>
-            <td>${z.headRemaining.toFixed(2)}</td>
-            <td>${z.pumpOk ? "✔ Yes" : "✘ No"}</td>
-        </tr>
-    `;
-});
+        html += `
+            <tr>
+                <td>${z.zone}</td>
+                <td>${z.Q_Lmin.toFixed(2)}</td>
+                <td>${z.hf_pipe.toFixed(2)}</td>
+                <td>${z.hf_total.toFixed(2)}</td>
+                <td>${z.pressureBar.toFixed(2)}</td>
+                <td>${z.pumpOk ? "✔ Yes" : "❌ No"}</td>
+            </tr>
+        `;
+    });
 
     html += `</table>`;
     document.getElementById("zoneTableContainer").innerHTML = html;
