@@ -354,6 +354,7 @@ function calculate(){
         const pipeSize = parseFloat(document.getElementById(`zonePipeSize_${i}`).value);
         const fittings = parseFloat(document.getElementById(`fittings_${i}`).value);
         const pipeLength = parseFloat(document.getElementById(`pipeLength_${i}`).value);
+        const heightDiff = parseFloat(document.getElementById(`heightDiff_${i}`).value) || 0;
 
         const Q_Lmin = (heads * flowPerHead) / 60;
         totalFlow += Q_Lmin;
@@ -365,8 +366,8 @@ function calculate(){
 
         const hf_pipe = hazenWilliams(Q_m3s, D_m, pipeLength);
         const hf_minor = minorLoss(v, fittings);
-        const hf_total = (hf_pipe + hf_minor) * (1 + safetyMargin);
-
+        const hf_total = (hf_pipe + hf_minor + heightDiff) * (1 + safetyMargin);
+        
         const headAtSprinkler = pumpHeadMax - hf_total;
         const pressureBar = headAtSprinkler / 10;
 
