@@ -72,15 +72,54 @@
     }
 
     footer {
-        background: #37474f;
+        background: #0d47a1;
         color: white;
         text-align: center;
         padding: 12px;
         margin-top: 40px;
     }
+     /* ปุ่ม Home ลอยตัวมุมซ้ายบน */
+        .nav-home {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+    .btn-home-fixed {
+            background-color: #2E7D32;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+      .back-btn button {
+            background: #4ae328;
+            color: #fff;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+      .btn-home-fixed:hover {
+            background-color: #1B5E20;
+            transform: scale(1.05);
+        }    
 </style>
 </head>
 <body>
+
+<nav class="nav-home">
+    <a href="electric-basic.html" class="btn-home-fixed">
+        <span>🏠</span> กลับ
+    </a>
+</nav>
 
 <header>ประเภทสายไฟฟ้าและการใช้งาน</header>
 
@@ -193,10 +232,13 @@
     </table>
 
 </main>
-
-<footer>
-    © 2026 สุวัฒน์ เจริญพิบูลย์ | สื่อการสอนไฟฟ้าเบื้องต้น
-</footer>
-
 </body>
+<footer>
+  © 2026 Smart Farm IoT Project - เรียนรู้และพัฒนาเกษตรกรรมไทย| สื่อการสอนไฟฟ้าเบื้องต้น
+<a href="electric-basic.html" style="text-decoration: none; color: inherit;">
+    <div class="back-btn">
+        <button onclick="history.back()">กลับ</button>
+    </div>
+</a>
+</footer>
 </html>
