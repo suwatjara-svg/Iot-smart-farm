@@ -74,6 +74,31 @@
             cursor: pointer;
             font-size: 0.95rem;
         }
+         .btn-home-fixed {
+            background-color: #2E7D32;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-home-fixed:hover {
+            background-color: #1B5E20;
+            transform: scale(1.05);
+        }
+        /* ปุ่ม Home ลอยตัวมุมซ้ายบน */
+        .nav-home {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
         .back-btn button:hover {
             background: #0d47a1;
         }
