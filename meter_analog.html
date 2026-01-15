@@ -108,9 +108,35 @@
         max-width: 100%;
       }
     }
+    .btn-home-fixed {
+            background-color: #2E7D32;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+         /* ปุ่ม Home ลอยตัวมุมซ้ายบน */
+        .nav-home {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
   </style>
 </head>
 <body>
+
+<nav class="nav-home">
+    <a href="electric-basic.html" class="btn-home-fixed">
+        <span>🏠</span> กลับ
+    </a>
+</nav>
 
 <header>
   <h1>การใช้งานมิเตอร์เข็ม</h1>
