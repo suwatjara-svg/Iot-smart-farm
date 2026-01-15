@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>การใช้งานมิเตอร์ดิจิตอล</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
+        }
+        header {
+            background: #1565c0;
+            color: #fff;
+            padding: 12px 20px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+        main {
+            max-width: 960px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            border-radius: 8px;
+        }
+        .content-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .image-col {
+            flex: 0 0 260px;
+            max-width: 260px;
+        }
+        .image-col img {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+        }
+        .text-col {
+            flex: 1 1 0;
+            min-width: 260px;
+        }
+        h2 {
+            margin-top: 0;
+            color: #0d47a1;
+        }
+        h3 {
+            margin-bottom: 6px;
+            color: #1565c0;
+        }
+        ul {
+            margin-top: 4px;
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 4px;
+        }
+        .back-btn {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .back-btn button {
+            background: #1565c0;
+            color: #fff;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+        .back-btn button:hover {
+            background: #0d47a1;
+        }
+        @media (max-width: 700px) {
+            .content-wrapper {
+                flex-direction: column;
+            }
+            .image-col, .text-col {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>การใช้งานมิเตอร์ดิจิตอล</h1>
+</header>
+
+<main>
+    <div class="content-wrapper">
+        <div class="image-col">
+            <img src="images/meterdigitel.jpg" alt="มิเตอร์ดิจิตอล">
+        </div>
+
+        <div class="text-col">
+            <h2>ทำความรู้จักส่วนต่าง ๆ ของมิเตอร์ดิจิตอล</h2>
+
+            <h3>1. การเลือกย่านวัดบนปุ่มหมุน (Dial Functions)</h3>
+            <ul>
+                <li><b>V~ (AC Voltage):</b> ใช้สำหรับวัดแรงดันไฟฟ้ากระแสสลับ เช่น ปลั๊กไฟบ้าน หรือทางเอาต์พุตของ Inverter (รุ่นนี้มีปุ่ม Low Pass Filter สำหรับวัดไฟจาก VFD ได้แม่นยำ)</li>
+                <li><b>V− (DC Voltage):</b> ใช้สำหรับวัดแรงดันไฟฟ้ากระแสตรง เช่น แบตเตอรี่รถยนต์ ถ่านไฟฉาย หรือวงจรอิเล็กทรอนิกส์</li>
+                <li><b>mV (Millivolts):</b> ใช้สำหรับวัดแรงดันไฟฟ้าขนาดเล็กมาก ทั้ง AC และ DC</li>
+                <li><b>Ω (Resistance):</b> ย่านวัดความต้านทาน เพื่อเช็คค่าของตัวต้านทานหรืออุปกรณ์ไฟฟ้า</li>
+                <li><b>))) (Continuity):</b> โหมดทดสอบความต่อเนื่อง (มีเสียงเตือน) ใช้เช็คว่าสายไฟขาดภายในหรือไม่</li>
+                <li><b>-||- (Capacitance):</b> ใช้สำหรับวัดค่าตัวเก็บประจุ (Capacitor)</li>
+                <li><b>A / mA / μA:</b> ย่านสำหรับวัดกระแสไฟฟ้า (ต้องต่อมิเตอร์แบบอนุกรมกับวงจร)</li>
+                <li><b>Temperature:</b> รุ่นนี้สามารถวัดอุณหภูมิได้โดยใช้สาย Thermocouple</li>
+            </ul>
+
+            <h3>2. ช่องเสียบสายวัด (Input Terminals)</h3>
+            <p>การเสียบสายผิดช่องอาจทำให้ฟิวส์ขาดหรือมิเตอร์เสียหายได้ ควรเสียบดังนี้:</p>
+            <ul>
+                <li><b>ช่อง COM (สีดำ):</b> เสียบสายสีดำเสมอ (Common / Ground)</li>
+                <li><b>ช่อง V Ω →| (สีแดง):</b> สำหรับวัดแรงดัน ความต้านทาน ไดโอด และความถี่</li>
+                <li><b>ช่อง mA / μA (สีแดง):</b> สำหรับวัดกระแสไฟฟ้าต่ำ (หน่วยมิลลิแอมป์)</li>
+                <li><b>ช่อง 10A (สีแดง):</b> สำหรับวัดกระแสไฟฟ้าสูง (ไม่เกิน 10 แอมป์ต่อเนื่อง)</li>
+            </ul>
+
+            <h3>3. ฟังก์ชันปุ่มกดที่น่าสนใจ (Special Buttons)</h3>
+            <ul>
+                <li><b>ปุ่มสีเหลือง (Function Select):</b> ใช้สำหรับเปลี่ยนโหมดในย่านวัดเดียวกัน เช่น เปลี่ยนจากวัดความต้านทานเป็นวัดความต่อเนื่อง หรือสลับระหว่าง AC และ DC</li>
+                <li><b>Min/Max:</b> กดเพื่อบันทึกค่าต่ำสุดและสูงสุดที่มิเตอร์วัดได้ในช่วงเวลานั้น เหมาะกับการตรวจเช็คไฟตกหรือไฟกระชาก</li>
+                <li><b>Range:</b> ใช้สำหรับล็อคช่วงตัวเลข (Manual Range) หากไม่กด มิเตอร์จะปรับช่วงให้อัตโนมัติ (Auto Range)</li>
+                <li><b>Hi-Res (กดปุ่มสีเหลืองค้างไว้):</b> รุ่นนี้สามารถเพิ่มความละเอียดหน้าจอจาก 6,000 counts เป็น 20,000 counts ได้</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="back-btn">
+        <button onclick="history.back()">⬅ กลับ</button>
+    </div>
+</main>
+</body>
+</html>
