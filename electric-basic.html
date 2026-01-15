@@ -2,139 +2,243 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
-    <title>การใช้งานมิเตอร์ดิจิตอล</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ไฟฟ้าเบื้องต้นสำหรับ Smart Farm</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;700&display=swap');
+
         body {
-            font-family: "Segoe UI", Tahoma, sans-serif;
+            font-family: 'Sarabun', sans-serif;
+            line-height: 1.6;
+            color: #333;
             margin: 0;
             padding: 0;
-            background: #f5f5f5;
+            background-color: #f0f2f5;
         }
+
+        /* ปุ่ม Home ลอยตัวมุมซ้ายบน */
+        .nav-home {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .btn-home-fixed {
+            background-color: #2E7D32;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-home-fixed:hover {
+            background-color: #1B5E20;
+            transform: scale(1.05);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 60px auto 40px auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
         header {
-            background: #1565c0;
-            color: #fff;
-            padding: 12px 20px;
+            text-align: center;
+            padding-bottom: 25px;
+            border-bottom: 4px solid #2E7D32;
+            margin-bottom: 30px;
         }
-        header h1 {
-            margin: 0;
-            font-size: 1.4rem;
+
+        h1 { color: #1B5E20; margin-bottom: 10px; }
+        h2 { color: #2E7D32; border-left: 6px solid #4CAF50; padding-left: 15px; margin-top: 40px; }
+        h3 { color: #388E3C; margin-top: 25px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+
+        .highlight {
+            background: #E8F5E9;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #2E7D32;
+            margin-bottom: 25px;
         }
-        main {
-            max-width: 960px;
-            margin: 20px auto;
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .card {
             background: #fff;
             padding: 20px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-            border-radius: 8px;
-        }
-        .content-wrapper {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        .image-col {
-            flex: 0 0 260px;
-            max-width: 260px;
-        }
-        .image-col img {
-            width: 100%;
-            height: auto;
-            border-radius: 6px;
-            border: 1px solid #ddd;
-        }
-        .text-col {
-            flex: 1 1 0;
-            min-width: 260px;
-        }
-        h2 {
-            margin-top: 0;
-            color: #0d47a1;
-        }
-        h3 {
-            margin-bottom: 6px;
-            color: #1565c0;
-        }
-        ul {
-            margin-top: 4px;
-            padding-left: 20px;
-        }
-        li {
-            margin-bottom: 4px;
-        }
-        .back-btn {
-            margin-top: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            transition: all 0.3s ease;
             text-align: center;
         }
-        .back-btn button {
-            background: #1565c0;
-            color: #fff;
-            border: none;
-            padding: 8px 18px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.95rem;
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-color: #4CAF50;
         }
-        .back-btn button:hover {
-            background: #0d47a1;
+
+        .card img {
+            width: 100%;
+            max-width: 180px;
+            height: 150px;
+            object-fit: contain;
+            margin-bottom: 15px;
+            border-radius: 8px;
         }
-        @media (max-width: 700px) {
-            .content-wrapper {
-                flex-direction: column;
-            }
-            .image-col, .text-col {
-                max-width: 100%;
-            }
+
+        .card p { font-size: 0.95rem; color: #555; text-align: left; }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px 20px;
+            background: #2E7D32;
+            color: white;
+            border-radius: 0 0 15px 15px;
         }
+
+        .footer-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: #C8E6C9;
+            text-decoration: none;
+            border: 1px solid #C8E6C9;
+            padding: 8px 20px;
+            border-radius: 25px;
+            transition: 0.3s;
+        }
+
+        .footer-link:hover { background: white; color: #2E7D32; }
     </style>
 </head>
 <body>
-<header>
-    <h1>การใช้งานมิเตอร์ดิจิตอล</h1>
-</header>
 
-<main>
-    <div class="content-wrapper">
-        <div class="image-col">
+<nav class="nav-home">
+    <a href="index.html" class="btn-home-fixed">
+        <span>🏠</span> หน้าหลัก
+    </a>
+</nav>
+
+<div class="container">
+    <header>
+        <h1>⚡ ส่วนที่ 2: ไฟฟ้าเบื้องต้นสำหรับ Smart Farm</h1>
+        <p>พื้นฐานการใช้งานเครื่องมือและอุปกรณ์เพื่อความปลอดภัย</p>
+    </header>
+
+    <div class="highlight">
+        หัวใจสำคัญของ Smart Farm คือการทำงานร่วมกันระหว่างซอฟต์แวร์และฮาร์ดแวร์ การเข้าใจพื้นฐานไฟฟ้าจะช่วยให้ระบบทำงานได้อย่างเสถียร
+    </div>
+<section>
+    <h2>1. ประเภทของไฟฟ้าที่ใช้ในฟาร์ม</h2>
+    <div class="grid">
+        <a href="ACDC.html" style="text-decoration: none; color: inherit;">
+            <div class="card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column; cursor: pointer;">
+                <div style="width: 100%; height: 220px; background-color: #f9f9f9;">
+                    <img src="AC220V.png" alt="AC and DC Power" 
+                         style="width: 100%; height: 100%; object-fit: cover; border-radius: 0; margin-bottom: 0; max-width: none;">
+                </div>
+                
+                <div style="padding: 20px; text-align: left;">
+                    <h4 style="margin-top: 0; color: #1B5E20; display: flex; align-items: center; gap: 10px;">
+                        ไฟฟ้า AC และ DC <span style="font-size: 0.8rem; background: #E8F5E9; padding: 2px 8px; border-radius: 10px;">คลิกเพื่ออ่านเพิ่มเติม</span>
+                    </h4>
+                    <p style="margin-bottom: 10px;">
+                        <strong>ไฟฟ้ากระแสสลับ (AC 220V):</strong> ไฟบ้านหลักสำหรับอุปกรณ์กำลังสูง เช่น ปั๊มน้ำ และระบบส่องสว่าง
+                    </p>
+                    <p style="margin-bottom: 0;">
+                        <strong>ไฟฟ้ากระแสตรง (DC 5V-24V):</strong> ไฟแรงดันต่ำสำหรับเลี้ยงบอร์ด IoT, เซนเซอร์ และระบบควบคุม
+                    </p>
+                </div>
+            </div>
+        </a>
+    </div>
+</section> 
+
+      <section>
+        <h2>2. การใช้เครื่องมือ (Tools)</h2>
+
+        <div class="grid">
+
+            <a href="meterdigitel.html" target="_blank" style="text-decoration: none; color: inherit;">
+        <div class="card">
             <img src="images/meterdigitel.jpg" alt="มิเตอร์ดิจิตอล">
+            <h4>มิเตอร์ดิจิตอล</h4>
+            <p>ใช้วัดค่าแรงดันและกระแสไฟฟ้าอย่างแม่นยำ เหมาะสำหรับงานละเอียดในระบบ IoT</p>
+            <span style="font-size: 0.8rem; background: #E8F5E9; padding: 2px 8px; border-radius: 10px;">
+                คลิกเพื่ออ่านเพิ่มเติม
+            </span>
         </div>
+    </a>
 
-        <div class="text-col">
-            <h2>ทำความรู้จักส่วนต่าง ๆ ของมิเตอร์ดิจิตอล</h2>
-
-            <h3>1. การเลือกย่านวัดบนปุ่มหมุน (Dial Functions)</h3>
-            <ul>
-                <li><b>V~ (AC Voltage):</b> ใช้สำหรับวัดแรงดันไฟฟ้ากระแสสลับ เช่น ปลั๊กไฟบ้าน หรือทางเอาต์พุตของ Inverter (รุ่นนี้มีปุ่ม Low Pass Filter สำหรับวัดไฟจาก VFD ได้แม่นยำ)</li>
-                <li><b>V− (DC Voltage):</b> ใช้สำหรับวัดแรงดันไฟฟ้ากระแสตรง เช่น แบตเตอรี่รถยนต์ ถ่านไฟฉาย หรือวงจรอิเล็กทรอนิกส์</li>
-                <li><b>mV (Millivolts):</b> ใช้สำหรับวัดแรงดันไฟฟ้าขนาดเล็กมาก ทั้ง AC และ DC</li>
-                <li><b>Ω (Resistance):</b> ย่านวัดความต้านทาน เพื่อเช็คค่าของตัวต้านทานหรืออุปกรณ์ไฟฟ้า</li>
-                <li><b>))) (Continuity):</b> โหมดทดสอบความต่อเนื่อง (มีเสียงเตือน) ใช้เช็คว่าสายไฟขาดภายในหรือไม่</li>
-                <li><b>-||- (Capacitance):</b> ใช้สำหรับวัดค่าตัวเก็บประจุ (Capacitor)</li>
-                <li><b>A / mA / μA:</b> ย่านสำหรับวัดกระแสไฟฟ้า (ต้องต่อมิเตอร์แบบอนุกรมกับวงจร)</li>
-                <li><b>Temperature:</b> รุ่นนี้สามารถวัดอุณหภูมิได้โดยใช้สาย Thermocouple</li>
-            </ul>
-
-            <h3>2. ช่องเสียบสายวัด (Input Terminals)</h3>
-            <p>การเสียบสายผิดช่องอาจทำให้ฟิวส์ขาดหรือมิเตอร์เสียหายได้ ควรเสียบดังนี้:</p>
-            <ul>
-                <li><b>ช่อง COM (สีดำ):</b> เสียบสายสีดำเสมอ (Common / Ground)</li>
-                <li><b>ช่อง V Ω →| (สีแดง):</b> สำหรับวัดแรงดัน ความต้านทาน ไดโอด และความถี่</li>
-                <li><b>ช่อง mA / μA (สีแดง):</b> สำหรับวัดกระแสไฟฟ้าต่ำ (หน่วยมิลลิแอมป์)</li>
-                <li><b>ช่อง 10A (สีแดง):</b> สำหรับวัดกระแสไฟฟ้าสูง (ไม่เกิน 10 แอมป์ต่อเนื่อง)</li>
-            </ul>
-
-            <h3>3. ฟังก์ชันปุ่มกดที่น่าสนใจ (Special Buttons)</h3>
-            <ul>
-                <li><b>ปุ่มสีเหลือง (Function Select):</b> ใช้สำหรับเปลี่ยนโหมดในย่านวัดเดียวกัน เช่น เปลี่ยนจากวัดความต้านทานเป็นวัดความต่อเนื่อง หรือสลับระหว่าง AC และ DC</li>
-                <li><b>Min/Max:</b> กดเพื่อบันทึกค่าต่ำสุดและสูงสุดที่มิเตอร์วัดได้ในช่วงเวลานั้น เหมาะกับการตรวจเช็คไฟตกหรือไฟกระชาก</li>
-                <li><b>Range:</b> ใช้สำหรับล็อคช่วงตัวเลข (Manual Range) หากไม่กด มิเตอร์จะปรับช่วงให้อัตโนมัติ (Auto Range)</li>
-                <li><b>Hi-Res (กดปุ่มสีเหลืองค้างไว้):</b> รุ่นนี้สามารถเพิ่มความละเอียดหน้าจอจาก 6,000 counts เป็น 20,000 counts ได้</li>
-            </ul>
+        <a href="ACDC.html" target="_blank" style="text-decoration: none; color: inherit;">
+            <div class="card">
+                <img src="images/meter_analog.jpeg" alt="มิเตอร์เข็ม">
+                <h4>มิเตอร์เข็ม</h4>
+                <p>เหมาะสำหรับเช็กความต่อเนื่องของวงจร หรือดูค่าที่มีการเปลี่ยนแปลงบ่อยๆ</p>
+                <span style="font-size: 0.8rem; background: #E8F5E9; padding: 2px 8px; border-radius: 10px;">คลิกเพื่ออ่านเพิ่มเติม
+             </span>
         </div>
-    </div>
+    </a>
+    
+        <a href="ACDC.html" target="_blank" style="text-decoration: none; color: inherit;">
+            <div class="card">
+                <img src="images/clamp_meter.jpg" alt="แคลมป์มิเตอร์">
+                <h4>แคลมป์มิเตอร์</h4>
+                <p>เหมาะสำหรับเช็กวัดค่ากระแสไฟฟ้า (แอมป์) ที่ไหลผ่านสายไฟ</p>
+                <span style="font-size: 0.8rem; background: #E8F5E9; padding: 2px 8px; border-radius: 10px;">คลิกเพื่ออ่านเพิ่มเติม
+             </span>
+        </div>
+    </a>            
+        </div>
+    </section>
 
-    <div class="back-btn">
-        <button onclick="history.back()">⬅ กลับ</button>
-    </div>
-</main>
-</body>
-</html>
+    <section>
+        <h2>3. อุปกรณ์ไฟฟ้าหลัก</h2>
+        <div class="grid">
+            <div class="card">
+                <img src="images/vct_cable.jpg" alt="สายไฟ VCT">
+                <h4>สายไฟประเภท VCT</h4>
+                <p>สายไฟกลมฉนวนหนา ทนความชื้นได้ดีเยี่ยม เหมาะกับงานลากสายในฟาร์ม</p>
+            </div>
+            <div class="card">
+                <img src="images/breaker.jpg" alt="เบรกเกอร์">
+                <h4>เบรกเกอร์ (Breaker)</h4>
+                <p>ตัดไฟอัตโนมัติเมื่อเกิดไฟเกินหรือไฟช็อต เพื่อป้องกันสายไฟไหม้</p>
+            </div>
+            <div class="card">
+                <img src="images/contactor.jpg" alt="คอนแทคเตอร์">
+                <h4>Magnetic Contactor</h4>
+                <p>สวิตช์แม่เหล็กสำหรับตัดต่อไฟให้ปั๊มน้ำขนาดใหญ่ โดยรับคำสั่งจากอุปกรณ์ IoT</p>
+            </div>
+            <div class="card">
+                <img src="images/overload.jpg" alt="โอเวอร์โหลด">
+                <h4>โอเวอร์โหลด (Overload)</h4>
+                <p>อุปกรณ์ป้องกันปั๊มน้ำไหม้ โดยจะตัดวงจรเมื่อมอเตอร์ทำงานหนักเกินไป</p>
+            </div>
+            <div class="card" style="grid-column: span 2;">
+                <img src="images/sonoff.jpg" alt="Sonoff">
+                <h4>Sonoff Switch Wi-Fi</h4>
+                <p>สวิตช์อัจฉริยะสำหรับควบคุมผ่าน Wi-Fi ใช้สั่งงาน Magnetic Contactor เพื่อเปิด-ปิดปั๊มน้ำผ่านมือถือ</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Smart Farm IoT Project - เรียนรู้และพัฒนาเกษตรกรรมไทย</p>
+        <a href="index.html" class="
