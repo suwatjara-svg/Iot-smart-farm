@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>การใช้งานมิเตอร์ดิจิตอล</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: #f5f5f5;
+    }
+
+    header {
+      background-color: #1565c0;
+      color: white;
+      padding: 16px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.6rem;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 20px auto;
+      background: white;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      border-radius: 8px;
+    }
+
+    .content-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .image-col {
+      flex: 0 0 280px;
+      max-width: 280px;
+    }
+
+    .image-col img {
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    .text-col {
+      flex: 1 1 0;
+      min-width: 260px;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #0d47a1;
+    }
+
+    h3 {
+      margin-bottom: 6px;
+      color: #1565c0;
+    }
+
+    ul {
+      padding-left: 20px;
+      margin-top: 4px;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    .back-btn {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .back-btn button {
+      background: #1565c0;
+      color: white;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    .back-btn button:hover {
+      background: #0d47a1;
+    }
+
+    footer {
+      background-color: #37474f;
+      color: white;
+      text-align: center;
+      padding: 12px;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 700px) {
+      .content-wrapper {
+        flex-direction: column;
+      }
+      .image-col, .text-col {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>การใช้งานมิเตอร์ดิจิตอล</h1>
+</header>
+
+<main>
+  <div class="content-wrapper">
+    <div class="image-col">
+      <img src="images/meter_analog.jpeg" alt="มิเตอร์ดิจิตอล">
+    </div>
+
+    <div class="text-col">
+      <h2>1. เข้าใจย่านวัดหลักบนตัวเครื่อง</h2>
+      <p>เพื่อให้ใช้งานได้อย่างถูกต้องและป้องกันตัวเครื่องเสียหาย คุณต้องรู้จักย่านวัดทั้ง 4 ส่วนหลักดังนี้:</p>
+      <ul>
+        <li><b>DCV (Direct Current Voltage):</b> วัดแรงดันไฟฟ้ากระแสตรง เช่น แบตเตอรี่, ถ่านไฟฉาย, วงจรอิเล็กทรอนิกส์</li>
+        <li><b>ACV (Alternating Current Voltage):</b> วัดแรงดันไฟฟ้ากระแสสลับ เช่น ปลั๊กไฟบ้าน (220V)</li>
+        <li><b>Ω (Resistance):</b> วัดความต้านทาน ใช้เช็คอุปกรณ์ตัวต้านทาน หรือเช็คว่าสายไฟขาดหรือไม่</li>
+        <li><b>DCmA (Direct Current Milliamperes):</b> วัดกระแสไฟฟ้าปริมาณน้อยในวงจร DC</li>
+      </ul>
+
+      <h2>2. วิธีการอ่านค่าบนหน้าปัด</h2>
+      <p>การอ่านมิเตอร์เข็มต้องดูให้สัมพันธ์กับย่านที่เราตั้งไว้:</p>
+      <ul>
+        <li><b>สเกลบนสุด (สีดำ):</b> อ่านค่าความต้านทาน (Ω) โดยเลข 0 อยู่ทางขวาสุด</li>
+        <li><b>สเกลกลาง (สีดำ):</b> อ่านค่า DCV และ ACV โดยดูตัวเลขชุด 10, 50, 250 ตามย่านที่ตั้งไว้</li>
+        <li><b>สเกลสีแดง:</b> อ่านค่า ACV 10V โดยเฉพาะ เพื่อความละเอียดแม่นยำ</li>
+      </ul>
+
+      <h2>3. ขั้นตอนการใช้งานจริง</h2>
+      <p><b>ก. การวัดแรงดันไฟบ้าน (ACV)</b></p>
+      <ul>
+        <li>หมุนปุ่มเลือกไปที่ ACV 250 (เพราะไฟบ้านคือ 220V ต้องตั้งย่านสูงกว่า)</li>
+        <li>เสียบสายวัด (ดำที่ -COM / แดงที่ +) แล้วนำไปแหย่ที่ปลั๊กไฟ</li>
+        <li>อ่านค่าที่แถบสเกล ACV โดยดูเลขแถวที่ลงท้ายด้วย 250</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="back-btn">
+    <button onclick="history.back()">← กลับ</button>
+  </div>
+</main>
+
+<footer>
+  © 2026 Smart Farm IoT Project - เรียนรู้และพัฒนาเกษตรกรรมไทย| สื่อการสอนไฟฟ้าเบื้องต้น
+</footer>
+
+</body>
+</html>
