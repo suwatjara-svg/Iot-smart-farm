@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>การใช้งานมิเตอร์ดิจิตอล</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
+        }
+        header {
+            background: #1565c0;
+            color: #fff;
+            padding: 12px 20px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+        main {
+            max-width: 960px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            border-radius: 8px;
+        }
+        footer {
+      background-color: #0d47a1;
+      color: white;
+      text-align: center;
+      padding: 12px;
+      margin-top: 40px;
+    }
+        .content-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .image-col {
+            flex: 0 0 260px;
+            max-width: 260px;
+        }
+        .image-col img {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+        }
+        .text-col {
+            flex: 1 1 0;
+            min-width: 260px;
+        }
+        h2 {
+            margin-top: 0;
+            color: #0d47a1;
+        }
+        h3 {
+            margin-bottom: 6px;
+            color: #1565c0;
+        }
+        ul {
+            margin-top: 4px;
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 4px;
+        }
+        .back-btn {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .back-btn button {
+            background: #4ae328;
+            color: #fff;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+         .btn-home-fixed {
+            background-color: #2E7D32;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-home-fixed:hover {
+            background-color: #1B5E20;
+            transform: scale(1.05);
+        }
+        /* ปุ่ม Home ลอยตัวมุมซ้ายบน */
+        .nav-home {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+        .back-btn button:hover {
+            background: #33ad1d;
+        }
+        @media (max-width: 700px) {
+            .content-wrapper {
+                flex-direction: column;
+            }
+            .image-col, .text-col {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="nav-home">
+    <a href="electric-basic.html" class="btn-home-fixed">
+        <span>🏠</span> กลับ
+    </a>
+</nav>
+
+<header>
+    <h1>การใช้งานมิเตอร์ดิจิตอล</h1>
+</header>
+
+<main>
+  <div class="content-wrapper" style="display: flex; flex-wrap: wrap; gap: 20px;">
+    <div class="image-col" style="flex: 1 1 100%; text-align: center;">
+      <img src="images/Breaker2.jpeg" alt="เบรกเกอร์ไฟฟ้า SBF-16L" style="max-width: 600px; width: 100%; border-radius: 8px; border: 1px solid #ccc;">
+      <p style="font-size: 0.9rem; color: #555; margin-top: 8px;">ภาพเบรกเกอร์รุ่น SBF-16L พร้อมระบบตรวจจับไฟรั่วและตัดไฟอัตโนมัติ</p>
+    </div>
+
+    <div class="text-col" style="flex: 1 1 100%;">
+      <h2>ข้อมูลจำเพาะของเบรกเกอร์ SBF-16L</h2>
+
+      <h3>1. ความสามารถในการตัดกระแส</h3>
+      <ul>
+        <li><b>ตัดกระแสไฟฟ้าได้สูงสุด:</b> 15A</li>
+        <li><b>แรงดันไฟฟ้า:</b> AC 220V</li>
+        <li><b>ความถี่:</b> 50/60 Hz</li>
+        <li><b>จำนวนโพล:</b> 2P (ตัดทั้งสาย L และ N)</li>
+      </ul>
+
+      <h3>2. ระบบป้องกันไฟรั่ว</h3>
+      <ul>
+        <li><b>วงจรตรวจจับไฟรั่ว:</b> แบบอิเล็กทรอนิกส์</li>
+        <li><b>ความไวในการตัดไฟรั่ว:</b> 15mA</li>
+        <li><b>เหมาะสำหรับ:</b> ป้องกันอันตรายจากไฟรั่วในบ้านและอาคาร</li>
+      </ul>
+
+      <h3>3. ฟังก์ชันและคุณสมบัติเพิ่มเติม</h3>
+      <ul>
+        <li><b>รุ่น:</b> SBF-16L</li>
+        <li><b>สวิตช์เปิด/ปิด:</b> มีปุ่ม ON พร้อมแสดงค่ากระแส (15A)</li>
+        <li><b>WISH LED:</b> มีไฟแสดงสถานะการทำงาน</li>
+        <li><b>การติดตั้ง:</b> ใช้กับระบบไฟฟ้าในบ้านทั่วไป</li>
+      </ul>
+    </div>
+  </div>
+</main>
+
+</body>
+<footer>
+  © 2026 Smart Farm IoT Project - เรียนรู้และพัฒนาเกษตรกรรมไทย| สื่อการสอนไฟฟ้าเบื้องต้น
+<a href="electric-basic.html" style="text-decoration: none; color: inherit;">
+    <div class="back-btn">
+        <button onclick="history.back()">กลับ</button>
+    </div>
+</a>
+</footer>
+</html>
