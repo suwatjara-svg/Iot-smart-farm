@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>การใช้งานมิเตอร์ดิจิตอล</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
+        }
+        header {
+            background: #1565c0;
+            color: #fff;
+            padding: 12px 20px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+        main {
+            max-width: 960px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            border-radius: 8px;
+        }
+        footer {
+      background-color: #0d47a1;
+      color: white;
+      text-align: center;
+      padding: 12px;
+      margin-top: 40px;
+    }
+        .content-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .image-col {
+            flex: 0 0 260px;
+            max-width: 260px;
+        }
+        .image-col img {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+        }
+        .text-col {
+            flex: 1 1 0;
+            min-width: 260px;
+        }
+        h2 {
+            margin-top: 0;
+            color: #0d47a1;
+        }
+        h3 {
+            margin-bottom: 6px;
+            color: #1565c0;
+        }
+        ul {
+            margin-top: 4px;
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 4px;
+        }
+        .back-btn {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .back-btn button {
+            background: #4ae328;
+            color: #fff;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+         .btn-home-fixed {
+            background-color: #2E7D32;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-home-fixed:hover {
+            background-color: #1B5E20;
+            transform: scale(1.05);
+        }
+        /* ปุ่ม Home ลอยตัวมุมซ้ายบน */
+        .nav-home {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+        .back-btn button:hover {
+            background: #33ad1d;
+        }
+        @media (max-width: 700px) {
+            .content-wrapper {
+                flex-direction: column;
+            }
+            .image-col, .text-col {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="nav-home">
+    <a href="electric-basic.html" class="btn-home-fixed">
+        <span>🏠</span> กลับ
+    </a>
+</nav>
+
+<header>
+    <h1>การใช้งานมิเตอร์ดิจิตอล</h1>
+</header>
+
+<main>
+  <div class="content-wrapper" style="max-width: 1000px; margin: auto; padding: 20px;">
+    
+    <!-- ภาพคอนแทคเตอร์เต็มจอ -->
+    <div style="text-align: center;">
+      <img src="images/contact_schneider.jpeg" alt="คอนแทคเตอร์ Schneider LC1 E06 10" style="width: 100%; max-width: 800px; border-radius: 8px; border: 1px solid #ccc;">
+      <p style="font-size: 0.9rem; color: #555; margin-top: 8px;">
+        คอนแทคเตอร์ Schneider รุ่น EasyPact TVS LC1 E06 10 สำหรับควบคุมโหลดไฟฟ้า เช่น มอเตอร์ และระบบอัตโนมัติ
+      </p>
+    </div>
+
+    <!-- เนื้อหาหลัก -->
+    <div style="margin-top: 30px;">
+      <h2 style="color: #0d47a1;">หลักการเลือกใช้งานคอนแทคเตอร์</h2>
+
+      <h3>1. กำหนดพิกัดโหลด (Load Specification)</h3>
+      <ul>
+        <li><b>กระแสไฟฟ้า (Current, A):</b> ดูจากป้ายมอเตอร์ หรือคำนวณ จากนั้นคูณด้วย 1.25–1.5 เพื่อเผื่อความปลอดภัย<br>
+        เช่น มอเตอร์ 30A → เลือกแมกเนติกอย่างน้อย 37.5A → ใช้ขนาด 40A</li>
+        <li><b>แรงดันไฟฟ้า (Voltage, V):</b> แรงดันที่ใช้กับโหลด เช่น 220V, 380V/400V</li>
+        <li><b>กำลังไฟฟ้า (kW/HP):</b> ใช้ค่ากำลังมอเตอร์เพื่อเทียบกับตารางเลือกซื้อ</li>
+      </ul>
+
+      <h3>2. เลือกแรงดันคอยล์ (Coil Voltage)</h3>
+      <p>แรงดันคอยล์ต้องตรงกับวงจรควบคุม เช่น:</p>
+      <ul>
+        <li>24VDC – ใช้กับระบบควบคุมไฟตรง</li>
+        <li>220VAC – ใช้กับระบบควบคุมทั่วไปในบ้านหรืออาคาร</li>
+        <li>380VAC – ใช้ในระบบอุตสาหกรรม</li>
+      </ul>
+
+      <h3>3. จำนวนขั้ว (Poles)</h3>
+      <ul>
+        <li><b>1 เฟส:</b> ใช้ 2 หรือ 3 ขั้ว</li>
+        <li><b>3 เฟส:</b> ใช้ 3 ขั้วสำหรับมอเตอร์ หรือ 4 ขั้วในบางกรณีที่ต้องควบคุมสาย Neutral</li>
+      </ul>
+
+      <h3>4. ประเภทการใช้งาน (Utilization Category)</h3>
+      <ul>
+        <li><b>AC-1:</b> โหลดความต้านทาน เช่น ฮีตเตอร์</li>
+        <li><b>AC-3:</b> มอเตอร์กรงกระรอก ใช้สำหรับสตาร์ท–หยุดทั่วไป</li>
+        <li><b>AC-4:</b> มอเตอร์ที่ต้องกลับทิศทาง หรือ Jogging (สตาร์ท–หยุดบ่อยครั้ง)</li>
+      </ul>
+
+      <h3>5. จำนวนหน้าสัมผัสช่วย (Auxiliary Contacts)</h3>
+      <p>เลือกจำนวนหน้าสัมผัสตามที่วงจรควบคุมต้องการ:</p>
+      <ul>
+        <li><b>NO (Normally Open):</b> หน้าสัมผัสเปิดเมื่อคอนแทคเตอร์ทำงาน</li>
+        <li><b>NC (Normally Closed):</b> หน้าสัมผัสปิดเมื่อคอนแทคเตอร์ยังไม่ทำงาน</li>
+      </ul>
+    </div>
+  </div>
+</main>
+
+</body>
+<footer>
+  © 2026 Smart Farm IoT Project - เรียนรู้และพัฒนาเกษตรกรรมไทย| สื่อการสอนไฟฟ้าเบื้องต้น
+<a href="electric-basic.html" style="text-decoration: none; color: inherit;">
+    <div class="back-btn">
+        <button onclick="history.back()">กลับ</button>
+    </div>
+</a>
+</footer>
+</html>
